@@ -10,8 +10,10 @@
   line-height: 1.4;
 }
 
+ul li { padding: 5px; }
+
 a {
-  color: #007acc;
+  color: #50a7e1;
   text-decoration: none;
 }
 
@@ -21,11 +23,35 @@ code {
 }
 
 .codeblock {
-  margin: 10px;
+  margin: 1em 0px;
+  padding: 8px 28px;
+  font-size: 1em;
   background-color: #303030;
-  font-family: monospace;
+  font-family: Consolas;
+  display: block;
+  white-space: pre;
+}
+
+.codeblock p {
+  padding: 0px 0px;
+  margin: 2px;
 }
 
 .terminal {
   color: bisque;
+}
+
+.section0 {
+  font-size: 24pt;
+  font-weight: bold;
+}
+
+.section1 {
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+.section2 {
+  font-size: 16pt;
+  font-weight: bold;
 }

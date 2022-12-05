@@ -36,7 +36,6 @@ export interface GrammarRef extends GrammarPoint {
     name: string
 }
 
-
 export const union = (...cases: [GrammarPoints, ...GrammarPoints[]]): GrammarPoint => ({
     toComponent: (group: boolean) => [
     ...group ? ["("] : [],
@@ -54,7 +53,7 @@ export const many = (...nested: [GrammarPoints, ...GrammarPoints[]]): GrammarPoi
 })
 
 export const special = (text: string): GrammarPoint => ({
-    toComponent: () => `/* ${text} */`
+    toComponent: () => `<${text}>`
 })
 
 export const range = (a: string, b: string): GrammarPoint => ({
@@ -78,13 +77,10 @@ export const toDefs = <T extends string,>(refs: Record<T, GrammarRef>, _defs: Re
         {} as Record<T, GrammarInfo>
     )
 
-export const Grammar = ({terms}: {terms:GrammarInfo[]}): ReactElement => (
-    <pre className='codeblock' children={terms.reduce((last, curr, index) => [
-        ...last,
-        <a id={curr.ref.name}>{curr.ref.name}</a>,
-        ' = ',
-        pointsToComponents(curr.grammar),
-        '.',
-        ...index !== terms.length - 1 ? ["\n"] : []
-    ], [] as ReactNode[])}/>
-)   
+export const Grammar = ({terms}: {terms:GrammarInfo[]}): ReactElement => {
+    const length = Math.max(...terms.map((elem) => elem.ref.name.length))
+    const children = terms.map((curr) => (<p>
+        <a id={curr.ref.name}>{curr.ref.name.padEnd(length)}</a> = {pointsToComponents(curr.grammar)}.</p>
+    ))
+    return <div className='codeblock'>{children}</div>
+}

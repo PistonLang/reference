@@ -6,11 +6,14 @@ const _defs: Record<keyof typeof types, GrammarPoints> = {
     TypeUnion: [types.Type, many('+', types.Type)],
     TypeBound: [base.identifier, '<:', types.TypeUnion],
     TypeParams: ['[', many(base.identifier, option(base.commaOrNL)), option(base.identifier), ']'],
-    TypeArgs: ['[', many(types.Type, option(base.commaOrNL)), option(types.Type), ']'],
+    TypeArg: [option(union('<:', ':>')), types.Type],
+    TypeArgs: ['[', many(types.TypeArg, option(base.commaOrNL)), option(types.TypeArg), ']'],
     WhereClause: ['where', many(types.TypeBound, ','), types.TypeBound],
     NestedType: ['(', types.Type, ')'],
     NullableTypes: [types.Type, '?'],
     Type: union(types.TypePath, types.NestedType, types.NullableTypes) 
 }
 
-export const defs = toDefs(types, _defs)
+const defs = toDefs(types, _defs)
+
+export default defs
