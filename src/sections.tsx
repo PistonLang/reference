@@ -22,3 +22,7 @@ export const section = (
         ...subsections.map((sec) => sec.toComponent(level + 1)) 
     ]
 })
+
+export const CodePoint = ({children}: {children: ReactNode}) => (
+    <span className="codepoint">{children}</span>
+) 

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { ReactElement, ReactNode } from 'react'
 
 interface GrammarPoint {
@@ -9,7 +8,7 @@ export type GrammarPoints = GrammarPoint | [GrammarPoints, ...GrammarPoints[]] |
 
 const ref = (name: string): GrammarRef => ({
     name: name,
-    toComponent: () => (<a href={name}>{name}</a>)
+    toComponent: () => (<a href={`#${name}`}>{name}</a>)
 })
 
 export const toRefs = <T extends readonly string[],>(ids: T): Record<T[number], GrammarRef> =>  
@@ -79,8 +78,9 @@ export const toDefs = <T extends string,>(refs: Record<T, GrammarRef>, _defs: Re
 
 export const Grammar = ({terms}: {terms:GrammarInfo[]}): ReactElement => {
     const length = Math.max(...terms.map((elem) => elem.ref.name.length))
-    const children = terms.map((curr) => (<p>
-        <a id={curr.ref.name}>{curr.ref.name.padEnd(length)}</a> = {pointsToComponents(curr.grammar)}.</p>
-    ))
+    const children = terms.map((curr) => (<div className='production'>
+        <p className='production-left'><span className='production-name' id={curr.ref.name}>{curr.ref.name.padEnd(length)}</span> = </p>
+        <p className='production-right'>{pointsToComponents(curr.grammar)}</p>
+    </div>))
     return <div className='codeblock'>{children}</div>
 }

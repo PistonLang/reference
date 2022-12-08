@@ -29,12 +29,50 @@ code {
   background-color: #303030;
   font-family: Consolas;
   display: block;
-  white-space: pre;
 }
 
 .codeblock p {
   padding: 0px 0px;
-  margin: 2px;
+  margin: 2px 0px;
+}
+
+.codepoint {
+  background-color: #303030;
+  font-family: Consolas;
+}
+
+.production {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  align-content: flex-start;
+  row-gap: 0px;
+}
+
+.production-left {
+  white-space: pre;
+  margin: 0px;
+  padding: 0px;
+}
+
+.production-left p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.production-right {
+  margin: 0px;
+  padding: 0px;
+}
+
+.production-right p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.production-name {
+  font-style: italic;
+  color: #50a7e1;
 }
 
 .terminal {
@@ -42,16 +80,16 @@ code {
 }
 
 .section0 {
-  font-size: 24pt;
-  font-weight: bold;
-}
-
-.section1 {
   font-size: 20pt;
   font-weight: bold;
 }
 
-.section2 {
+.section1 {
   font-size: 16pt;
+  font-weight: bold;
+}
+
+.section2 {
+  font-size: 14pt;
   font-weight: bold;
 }
