@@ -3,13 +3,13 @@ import { CodePoint, section } from "../sections";
 
 export const tokens = section("Lexical Tokens", [defs.palmToken], [
     <p>
-    Palm code is represented in a UTF-8 text format where every sequence of characters represents one of the above tokens.
-    These tokens are then used for building syntax nodes.
+        Palm code is represented in a UTF-8 text format where every sequence of characters represents one of the above tokens.
+        These tokens are then used for building syntax nodes.
     </p>
 ], [
     section("Keywords", [], [
         <p>
-        In Palm thre are two types of keywords: strong and weak.
+            In Palm thre are two types of keywords: strong and weak.
         </p>
     ], [
         section("Strong Keywords", [
@@ -22,8 +22,11 @@ export const tokens = section("Lexical Tokens", [defs.palmToken], [
         defs.letter, defs.digit, defs.underscore, defs.apostrophe, defs.identifierHead, defs.identifierTail, defs.identifier
     ], [
         <p>
-        Identifiers are sequences of characters which are used for referencing types, variables, fuctions and packages.
-        Additionally, unlike many programming languages, Palm allows the use of apostophes as primes.
+            Identifiers are sequences of characters which are used for referencing types, variables, fuctions and packages.
+            The aforementioned keywwords are not counted under this token type.
+        </p>,
+        <p>
+            An identifier must start with a letter or underscore and can later also contain digits and apostrophes, as primes.
         </p>
     ]),
     section("Symbols", [
@@ -32,35 +35,36 @@ export const tokens = section("Lexical Tokens", [defs.palmToken], [
         defs.lParen, defs.rParen, defs.lBracket, defs.rBracket, defs.lBrace, defs.rBrace, defs.subtype, defs.supertype
     ], [
         <p>
-        Given above are all the symbols that have a lexical meaning in the language.
+            Given above are all the symbols that have a lexical meaning in the language.
         </p>
     ]),
     section("Ignorables", [
         defs.character, defs.whitespaceCharacter, defs.newline, defs.whitespace, defs.comment
     ], [
        <p>
-        When constructing syntax nodes whitespace and comments are to be ignored. The only form of whitespace that is to
-        be treated diffrently are new lines.
+            When constructing syntax nodes, whitespace and comments are to be ignored. The only form of whitespace that is to
+            be treated diffrently are new lines.
         </p>
     ], [
         section("Comments", [defs.lineComment, defs.multiComment], [
             <p>
-            Palm supports single-line comments, which begin with a <span className="codepoint">{'//'}</span> and multi-line comments,
-            which start with a <span className="codepoint">{'/*'}</span> and end with a <span className="codepoint">{'*/'}</span>.
-            Multi-line comments support nesting.
+                Palm supports single-line comments, which begin with a <CodePoint>{'//'}</CodePoint> and multi-line comments,
+                which start with a <CodePoint>{'/*'}</CodePoint> and end with a <CodePoint>{'*/'}</CodePoint>.
+                Multi-line comments support nesting.
             </p>
         ]),
         section("New Lines", [defs.commaOrNL], [
-            <p>0
-            In Palm, listz of items, whether declarations, parameters, arguments or expressions, use commas or new lines for separation.
-            It is only when there is a missing comma that new lines become significant characters. In every other case, new lines, like
-            the other whitespace characters, are ignored.
+            <p>
+                In Palm, listz of items, whether declarations, parameters, arguments or expressions, use commas or new lines for 
+                separation. It is only when there is a missing comma that new lines become significant characters. In every other case, 
+                new lines, like the other whitespace characters, are ignored.
             </p>
         ])
     ]),
     section("Literals", [], [
         <p>
-        Literals are sequences of characters which represent particular values. Palm has integer, float, boolean, character and string literals
+            Literals are sequences of characters which represent particular values. Palm has integer, floating-point, boolean, 
+            character and string literals
         </p>
     ], [
         section("Integer Literals", [
@@ -68,26 +72,27 @@ export const tokens = section("Lexical Tokens", [defs.palmToken], [
             defs.binaryLiteral, defs.decimalBody, defs.hexLiteral, defs.intLiteral
         ], [
             <p>
-            Integer literals represent values of type <CodePoint>Int32</CodePoint> or <CodePoint>Int64</CodePoint>. 
-            By default, the literals are in base 10, however, you can add a <CodePoint>0b</CodePoint> up front to make
-             it a base 2 literal, or a <CodePoint>0x</CodePoint> to make it a base 16 literal.
+                Integer literals represent values of type <CodePoint>Int32</CodePoint> or, when they surpass the
+                bounds of <CodePoint>Int32</CodePoint>, they are of type <CodePoint>Int64</CodePoint>. 
+                By default, the literals are in base 10, however, you can add a <CodePoint>0b</CodePoint> up front to make
+                it a base 2 literal, or a <CodePoint>0x</CodePoint> to make it a base 16 literal.
             </p>
         ]),
         section("Float Literals", [defs.floatExponent, defs.floatLiteral], [
             <p>
-            Floating-point literals represent values of type <CodePoint>Float64</CodePoint>. 
-            They are in base 10 and support scientific notation.
+                Floating-point literals represent values of type <CodePoint>Float64</CodePoint>. 
+                They are in base 10 and support scientific notation.
             </p>
         ]),
         section("Boolean Literals", [defs.boolLiteral], [
             <p>
-            Boolean literals represent values of type <CodePoint>Bool</CodePoint>.
+                Boolean literals represent values of type <CodePoint>Bool</CodePoint>.
             </p>
         ]),
         section("Char Literals", [defs.charCharacter, defs.charLiteral], [
             <p>
-            Character literals represent values of type <CodePoint>Char</CodePoint>. Aside for regular characters,
-            they also support certain escape characters. These include:
+                Character literals represent values of type <CodePoint>Char</CodePoint>. Aside for regular characters,
+                they also support certain escape characters. These include:
             </p>,
             <ul>
                 <li><CodePoint>\n</CodePoint> - new line</li>
@@ -102,9 +107,15 @@ export const tokens = section("Lexical Tokens", [defs.palmToken], [
         ]),
         section("String Literals", [defs.stringCharacter, defs.qoute, defs.stringLiteral], [
             <p>
-            String literals represent values of type <CodePoint>String</CodePoint>. They are able to span multiple
-            lines and support the same escape characters as character literals. That said, no whitespace elimination
-            is done on the literal itself - that must be done with functions.
+                String literals represent values of type <CodePoint>String</CodePoint>. They are able to span multiple
+                lines and support the same escape characters as character literals. That said, no whitespace elimination
+                is done on the literal itself - that must be done with functions.
+            </p>
+        ]),
+        section("Null Literals", [], [
+            <p>
+                The absence of a value can be represented using a <CodePoint>null</CodePoint> literal.
+                It is a value of type <CodePoint>Nothing?</CodePoint>. 
             </p>
         ])
     ])

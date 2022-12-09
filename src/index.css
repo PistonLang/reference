@@ -17,12 +17,7 @@ a {
   text-decoration: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.codeblock {
+.grammar {
   margin: 1em 0px;
   padding: 8px 28px;
   font-size: 1em;
@@ -31,7 +26,7 @@ code {
   display: block;
 }
 
-.codeblock p {
+.grammar p {
   padding: 0px 0px;
   margin: 2px 0px;
 }
@@ -91,5 +86,9 @@ code {
 
 .section2 {
   font-size: 14pt;
+  font-weight: bold;
+}
+
+.section3 {
   font-weight: bold;
 }

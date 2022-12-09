@@ -82,5 +82,5 @@ export const Grammar = ({terms}: {terms:GrammarInfo[]}): ReactElement => {
         <p className='production-left'><span className='production-name' id={curr.ref.name}>{curr.ref.name.padEnd(length)}</span> = </p>
         <p className='production-right'>{pointsToComponents(curr.grammar)}</p>
     </div>))
-    return <div className='codeblock'>{children}</div>
+    return <div className='grammar'>{children}</div>
 }

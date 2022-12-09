@@ -4,15 +4,17 @@ import { exprs, tokens, types } from "./refs"
 const _defs: Record<keyof typeof exprs, GrammarPoints> = {
     NestedExpression: [tokens.lParen, exprs.Expression, tokens.rParen],
     AccessExpression: [exprs.Term, tokens.comma, types.PathSegment],
-    InvokeExpression: [exprs.Term, tokens.lParen, many(exprs.Expression, tokens.commaOrNL), option(exprs.Expression), tokens.rParen],
-    PrefixExpression: [union(tokens.plus, tokens.minus), exprs.Term],
-    NullExpression: tokens.nullKw,
+    CallExpression: [exprs.Term, tokens.lParen, many(exprs.Expression, tokens.commaOrNL), option(exprs.Expression), tokens.rParen],
+    UnaryExpression: [union(tokens.plus, tokens.minus), exprs.Term],
     ThisExpression: tokens.thisKw,
     SuperExpression: [tokens.superKw, option(types.TypeArgs)],
-    Term: union(
-        tokens.intLiteral, tokens.floatLiteral, tokens.boolLiteral, tokens.charLiteral, tokens.stringLiteral, 
-        exprs.AccessExpression, exprs.InvokeExpression, exprs.PrefixExpression, exprs.NestedExpression, 
-        exprs.ThisExpression, exprs.SuperExpression, types.PathSegment
+    IdentifierExpression: types.PathSegment,
+    LiteralExpression: union(
+        tokens.intLiteral, tokens.floatLiteral, tokens.boolLiteral, tokens.charLiteral, tokens.stringLiteral, tokens.nullKw
+    ),
+    Term: union( 
+        exprs.AccessExpression, exprs.CallExpression, exprs.UnaryExpression, exprs.NestedExpression, 
+        exprs.ThisExpression, exprs.SuperExpression, exprs.LiteralExpression, exprs.IdentifierExpression
     ),
     Expression: exprs.AssignExpression,
     TimesExpression: [exprs.Term, many(union(tokens.star, tokens.slash), exprs.Term)],
