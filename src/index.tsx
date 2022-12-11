@@ -5,6 +5,7 @@ import { functions } from './sections/functions'
 import { introduction } from './sections/introduction'
 import { packageAndModules } from './sections/packages_and_modules'
 import { properties } from './sections/properties'
+import { scopes } from './sections/scopes'
 import { tokens } from './sections/tokens'
 import { types } from './sections/types'
 
@@ -15,7 +16,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     {functions.toComponent(0)}
     {properties.toComponent(0)}
     {types.toComponent(0)}
-    {packageAndModules.toComponent(0)}
     {expressions.toComponent(0)}
+    {scopes.toComponent(0)}
+    {packageAndModules.toComponent(0)}
   </div>
 )

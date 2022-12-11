@@ -124,7 +124,7 @@ export const stmts = toRefs([
 ] as const)
 
 export const types = toRefs([
-    "Type",
+    "TypeInstance",
     "Identifier",
     "PathSegment",
     "TypePath",
@@ -133,7 +133,7 @@ export const types = toRefs([
     "TypeArgs",
     "TypeUnion",
     "WhereClause",
-    "NullableTypes",
+    "NullableType",
     "NestedType",
     "TypeBound"
 ] as const)

@@ -44,7 +44,7 @@ export const union = (...cases: [GrammarPoints, ...GrammarPoints[]]): GrammarPoi
 })
 
 export const option = (...nested: [GrammarPoints, ...GrammarPoints[]]): GrammarPoint => ({
-    toComponent: () => ['[', pointsToComponents(nested, false), ']']
+    toComponent: () => <>[{pointsToComponents(nested, false)}]</>
 })
 
 export const many = (...nested: [GrammarPoints, ...GrammarPoints[]]): GrammarPoint => ({
@@ -56,7 +56,7 @@ export const special = (text: string): GrammarPoint => ({
 })
 
 export const range = (a: string, b: string): GrammarPoint => ({
-    toComponent: () => [strToComponent(a), " ... ", strToComponent(b)]
+    toComponent: () => <>{strToComponent(a)} ... {strToComponent(b)}</>
 })
 
 export interface GrammarInfo {

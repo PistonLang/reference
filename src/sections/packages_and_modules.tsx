@@ -1,46 +1,47 @@
 import defs from "../grammar/statements";
-import { section } from "../sections";
+import { GrammarSection } from "../sections";
 
-export const packageAndModules = section("Packages and Modules", [], [
+export const packageAndModules = GrammarSection("Packages and Modules", [], <>
     <p>
         Palm code is organized in modules, made up of packages, which consist of multiple files.
     </p>
-], [
-    section("Modules", [], [
+</>, [
+    GrammarSection("Modules", [], <>
         <p>
             A module is a single compilation unit. It may represent a library or an executable program.
-        </p>,
+        </p>
         <p>
             Modules are sort of a meta-concept in the language in the sense that they are not defined or
             referenced in Palm source code, but instead in a separate build system.
         </p>
-    ]),
-    section("Packages", [], [
+    </>),
+    GrammarSection("Packages", [], <>
         <p>
             Packages represent namespaces which can be used for grouping multiple declarations together.
-        </p>,
+        </p>
         <p>
             Every directory represents a package, with its subdirectories being its subpackages and
             all the declarations contained in its files belonging to it.
         </p>
-    ]),
-    section("File", [defs.File], [
+    </>),
+    GrammarSection("File", [defs.File], <>
         <p>
             Files are used for declaring functions, properties and types which belong to the package. 
             All of the stored properties are evaluated when an item from the file is first accessed.
-        </p>,
+        </p>
         <p>
             Within a file, all the items declared in the encapsulating package are directly accessible,
             as well as the items which are imported.
         </p>
-    ], [
-        section("Imports", [defs.ImportPath, defs.ImportSegment, defs.ImportGroup, defs.ImportValue, defs.Import], [
+    </>, [
+        GrammarSection("Imports", [defs.ImportPath, defs.ImportSegment, defs.ImportGroup, defs.ImportValue, defs.Import], <>
             <p>
-                At the start of every file you import all of the items which you use from other packages.
-                To do this, you use absolute paths where every intermdiate identifier represents a subpackage
-                and the final one may be a package or item. When importing multiple items and/or subpackages
-                with the same starting path, you may put them all in curly braces after a colon.
+                Every Palm file can have a single import statement at the start of it which is used for
+                binding identifiers to items declared in other packages. To do so, the path to every item
+                is used with every identifier up to the item's name representing a subpackage or containing item of
+                the previous one, starting from the root package. Additionally, if several items share the same
+                starting path, the diverging sections of the path may be put inside curly braces after the shared starting path.
             </p>
-        ])
+        </>)
     ])
 ])
