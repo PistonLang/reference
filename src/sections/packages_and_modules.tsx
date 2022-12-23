@@ -3,7 +3,7 @@ import { GrammarSection } from "../sections";
 
 export const packageAndModules = GrammarSection("Packages and Modules", [], <>
     <p>
-        Palm code is organized in modules, made up of packages, which consist of multiple files.
+        Piston code is organized in modules, made up of packages, which consist of multiple files.
     </p>
 </>, [
     GrammarSection("Modules", [], <>
@@ -12,7 +12,7 @@ export const packageAndModules = GrammarSection("Packages and Modules", [], <>
         </p>
         <p>
             Modules are sort of a meta-concept in the language in the sense that they are not defined or
-            referenced in Palm source code, but instead in a separate build system.
+            referenced in Piston source code, but instead in a separate build system.
         </p>
     </>),
     GrammarSection("Packages", [], <>
@@ -36,7 +36,7 @@ export const packageAndModules = GrammarSection("Packages and Modules", [], <>
     </>, [
         GrammarSection("Imports", [defs.ImportPath, defs.ImportSegment, defs.ImportGroup, defs.ImportValue, defs.Import], <>
             <p>
-                Every Palm file can have a single import statement at the start of it which is used for
+                Every Piston file can have a single import statement at the start of it which is used for
                 binding identifiers to items declared in other packages. To do so, the path to every item
                 is used with every identifier up to the item's name representing a subpackage or containing item of
                 the previous one, starting from the root package. Additionally, if several items share the same

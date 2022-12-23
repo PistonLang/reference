@@ -78,7 +78,7 @@ const _defs: Record<keyof typeof tk, GrammarPoints> = {
     dot: '.',
     comma: ',',
     underscore: '_',
-    palmToken: union(
+    PistonToken: union(
         tk.intLiteral, tk.floatLiteral, tk.boolLiteral, tk.charLiteral, tk.stringLiteral, tk.thisKw, tk.superKw,
         tk.nullKw, tk.identifier, tk.whereKw, tk.importKw, tk.getKw, tk.setKw, tk.valKw, tk.varKw, tk.defKw,
         tk.classKw, tk.traitKw, tk.comment, tk.whitespace, tk.newline, tk.eof, 

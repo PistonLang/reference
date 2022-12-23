@@ -1,15 +1,28 @@
 import defs from "../grammar/tokens";
 import { CodePoint, GrammarSection } from "../sections";
 
-export const tokens = GrammarSection("Lexical Tokens", [defs.palmToken], <>
+export const tokens = GrammarSection("Lexical Tokens", [defs.PistonToken], <>
     <p>
-        Palm code is represented in a UTF-8 text format where every sequence of characters represents one of the above tokens.
-        These tokens are then used for building syntax nodes.
+        Piston code is represented as a sequence of UTF-8 code points. Said code points can then be transformed
+        into a sequence of tokens such that the longest route is always taken.
     </p>
 </>, [
+    GrammarSection("Identifiers", [
+        defs.letter, defs.digit, defs.underscore, defs.apostrophe, defs.identifierHead, defs.identifierTail, defs.identifier
+    ], <>
+        <p>
+            Identifiers are sequences of characters which are used for binding types, variables, fuctions and packages.
+            An identifier must start with a letter or underscore and can later also contain digits and apostrophes, as primes.
+        </p>
+    </>),
     GrammarSection("Keywords", [], <>
         <p>
-            In Palm thre are two types of keywords: strong and weak.
+            In Piston, keywords are identifiers which are specially treated by the language. As such, during parsing, they
+            are not represented as identifier tokens, but as their own special tokens.
+        </p>
+        <p>
+            We differentiate between strong keywords, which remain inexchangeable with identifiers throughout the grammar,
+            and weak keywords, which, as we shall see in the grammar, can be used in the same places as identifier tokens.
         </p>
     </>, [
         GrammarSection("Strong Keywords", [
@@ -18,24 +31,14 @@ export const tokens = GrammarSection("Lexical Tokens", [defs.palmToken], <>
         ]),
         GrammarSection("Weak Keywords", [defs.whereKw, defs.getKw, defs.setKw])
     ]),
-    GrammarSection("Identifiers", [
-        defs.letter, defs.digit, defs.underscore, defs.apostrophe, defs.identifierHead, defs.identifierTail, defs.identifier
-    ], <>
-        <p>
-            Identifiers are sequences of characters which are used for referencing types, variables, fuctions and packages.
-            The aforementioned keywwords are not counted under this token type.
-        </p>
-        <p>
-            An identifier must start with a letter or underscore and can later also contain digits and apostrophes, as primes.
-        </p>
-    </>),
     GrammarSection("Symbols", [
         defs.plus, defs.minus, defs.star, defs.slash, defs.eq, defs.eqEq, defs.eMarkEq, defs.less, defs.greater, 
         defs.lessEq, defs.greaterEq, defs.andAnd, defs.orOr, defs.dot, defs.qMark, defs.colon, defs.comma, defs.arrow, 
         defs.lParen, defs.rParen, defs.lBracket, defs.rBracket, defs.lBrace, defs.rBrace, defs.subtype, defs.supertype
     ], <>
         <p>
-            Given above are all the symbols that have a lexical meaning in the language.
+            Given above are all the sequences of symbol (non-alphanumeric and non-whitespace) characters
+            which have a lexical meaning in the language.
         </p>
     </>),
     GrammarSection("Ignorables", [
@@ -48,14 +51,14 @@ export const tokens = GrammarSection("Lexical Tokens", [defs.palmToken], <>
     </>, [
         GrammarSection("Comments", [defs.lineComment, defs.multiComment], <>
             <p>
-                Palm supports single-line comments, which begin with a <CodePoint>{'//'}</CodePoint> and multi-line comments,
+                Piston supports single-line comments, which begin with a <CodePoint>{'//'}</CodePoint> and multi-line comments,
                 which start with a <CodePoint>{'/*'}</CodePoint> and end with a <CodePoint>{'*/'}</CodePoint>.
                 Multi-line comments support nesting.
             </p>
         </>),
         GrammarSection("New Lines", [defs.commaOrNL], <>
             <p>
-                In Palm, listz of items, whether declarations, parameters, arguments or expressions, use commas or new lines for 
+                In Piston, lists of items, whether declarations, parameters, arguments or expressions, use commas or new lines for 
                 separation. It is only when there is a missing comma that new lines become significant characters. In every other case, 
                 new lines, like the other whitespace characters, are ignored.
             </p>
@@ -63,7 +66,7 @@ export const tokens = GrammarSection("Lexical Tokens", [defs.palmToken], <>
     ]),
     GrammarSection("Literals", [], <>
         <p>
-            Literals are sequences of characters which represent particular values. Palm has integer, floating-point, boolean, 
+            Literals are sequences of characters which represent particular values. Piston has integer, floating-point, boolean, 
             character and string literals
         </p>
     </>, [
@@ -74,8 +77,8 @@ export const tokens = GrammarSection("Lexical Tokens", [defs.palmToken], <>
             <p>
                 Integer literals represent values of type <CodePoint>Int32</CodePoint> or, when they surpass the
                 bounds of <CodePoint>Int32</CodePoint>, they are of type <CodePoint>Int64</CodePoint>. 
-                By default, the literals are in base 10, however, you can add a <CodePoint>0b</CodePoint> up front to make
-                it a base 2 literal, or a <CodePoint>0x</CodePoint> to make it a base 16 literal.
+                By default, the literals are in base 10, however, <CodePoint>0b</CodePoint> or a <CodePoint>0x</CodePoint> can
+                be appended to the start to make it a base 2 or 16 literal, repectively.
             </p>
         </>),
         GrammarSection("Float Literals", [defs.floatExponent, defs.floatLiteral], <>
@@ -92,7 +95,7 @@ export const tokens = GrammarSection("Lexical Tokens", [defs.palmToken], <>
         GrammarSection("Char Literals", [defs.charCharacter, defs.charLiteral], <>
             <p>
                 Character literals represent values of type <CodePoint>Char</CodePoint>. Aside for regular characters,
-                they also support certain escape characters. These include:
+                they also support certain escape sequences. These include:
             </p>
             <ul>
                 <li><CodePoint>\n</CodePoint> - new line</li>
@@ -108,7 +111,7 @@ export const tokens = GrammarSection("Lexical Tokens", [defs.palmToken], <>
         GrammarSection("String Literals", [defs.stringCharacter, defs.qoute, defs.stringLiteral], <>
             <p>
                 String literals represent values of type <CodePoint>String</CodePoint>. They are able to span multiple
-                lines and support the same escape characters as character literals. That said, no whitespace elimination
+                lines and support the same escape sequences as character literals. That said, no whitespace elimination
                 is done on the literal itself - that must be done with functions.
             </p>
         </>),

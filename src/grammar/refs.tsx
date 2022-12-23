@@ -98,7 +98,7 @@ export const tokens = toRefs([
     "charLiteral",
     "stringLiteral",
     "underscore",
-    "palmToken"
+    "PistonToken"
 ] as const)
 
 export const stmts = toRefs([

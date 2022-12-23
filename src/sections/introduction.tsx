@@ -2,21 +2,33 @@ import { GrammarSection } from "../sections";
 
 export const introduction = GrammarSection("Introduction", [], <>
     <p>
-        This document is a reference for the Palm programming language. It is not a tutorial for the language, nor
-        a reference for the standard library - it is a reference meant primarily for implementors and contributors to
-        the language.
+        This is a reference manual for the Piston programming language.
     </p>
     <p>
-        Palm is a statically-typed general-prurpose programming language for the JVM with the goal of being 
+        Piston is a statically-typed general-prurpose programming language for the JVM with the goal of being 
         as simplistic yet as expressive as possible. To achieve this it drastically limits the JVM's nominal
         subtyping model in favour of a powerful type system which provides a more functional approach to processing data.
     </p>
 </>, [
+    GrammarSection("Scope", [], <>
+        <p>
+            This reference manual captures the core syntax and semantics of the Piston programming language. As such
+            its target audience are implementors of and contributors to the Piston programming language.
+        </p>
+        <p>
+            The manual does contain references to types from the standard library, though only those which are
+            essential for the functioning of the language. In general, this is not a manual for Piston's
+            standard library.
+        </p>
+        <p>
+            Additionally, this manual is in no way a tutorial of sorts for the language.
+        </p>
+    </>),
     GrammarSection("Compatibility", [], <>
         <p>
-            Currently the Palm programming language is very far from being complete and as a result this
-            specification is highly prone to changes. If you wish to contribute to the development of the language,
-            make sure to keep up with all the changes on the spectification's GitHub repository.
+            Currently the Piston programming language is very far from being complete and as a result this
+            specification is highly prone to changes. Anyone wishing to contribute to the development of the language
+            should stay up-to-date with all the changes on the specification's GitHub repository.
         </p>
     </>),
     GrammarSection("Notation", [], <>
@@ -36,6 +48,7 @@ export const introduction = GrammarSection("Introduction", [], <>
         <p>
             All production names will be written in camel case, however a distinction will be made between
             tokens, which will start with an uppercase letter, and syntax nodes, which will start with a lowercase letter.
+            As in PEG parsers, the unions prioritize the sequences listed first.
         </p>
     </>)
 ])

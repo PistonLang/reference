@@ -7,26 +7,26 @@ export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.Typ
         Types are sets of values with a corresponding set of operations.
     </p>
     <p>
-        Palm is a statically-typed language, meaning every value has a static type which is defined at compile-time.
+        Piston is a statically-typed language, meaning every value has a static type which is defined at compile-time.
         As a result of this, properties and functions must have the types of the parameters and return value specified.
     </p>
     <p>
-        Additionally, Palm has strong typing, which means that the type of a value does not change throughout
+        Additionally, Piston has strong typing, which means that the type of a value does not change throughout
         the execution of the program.
     </p>
     <p>
-        In Palm, all types are reference types, meaning that most of the time their values do not get stored in
+        In Piston, all types are reference types, meaning that most of the time their values do not get stored in
         properties and parameters, only references to the memory locations where they are stored. There are
         optimizations in place for certain immutable built-in types, however it does not change the fact that
         the mutability of properties and values are independent.
     </p>
     <p>
-        Palm has nominal subtyping, meaning that types are organized in a hierarchy
+        Piston has nominal subtyping, meaning that types are organized in a hierarchy
         of subtypes and supertypes with the supertype of all types, <CodePoint>Any?</CodePoint>, at the top
         and the subtype of all types, <CodePoint>Nothing</CodePoint>, at the bottom.
     </p>
     <p>
-        Additionally, Palm has parametric polymorphism, meaning a type can accept a number of type parameters.
+        Additionally, Piston has parametric polymorphism, meaning a type can accept a number of type parameters.
         The result of supplying a type with all the necessary type arguments is called a type instance.
         Type instances are used for specifying the set of values which a function/property can input and output.
     </p>
@@ -34,7 +34,7 @@ export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.Typ
     GrammarSection("Built-in Types", [], [], [
         GrammarSection("Any", [], <>
             <p>
-                <CodePoint>palm.Any</CodePoint> is the supertype of a non-null types. As a result, whenever a list of supertypes
+                <CodePoint>piston.Any</CodePoint> is the supertype of a non-null types. As a result, whenever a list of supertypes
                 is left empty, <CodePoint>Any</CodePoint> will be the direct supertype of the declared type.
             </p>
             <p>
@@ -48,26 +48,26 @@ export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.Typ
         </>),
         GrammarSection("Nothing", [], <>
             <p>
-                Conversely, <CodePoint>palm.Nothing</CodePoint> is the subtype of all types. It cannot be instantiated and it is used
+                Conversely, <CodePoint>piston.Nothing</CodePoint> is the subtype of all types. It cannot be instantiated and it is used
                 to signify errors and infinite loops.
             </p>
         </>),
         GrammarSection("Unit", [], <>
             <p>
-                <CodePoint>palm.Unit</CodePoint> is a singleton type which signiifies side-effects, akin 
+                <CodePoint>piston.Unit</CodePoint> is a singleton type which signiifies side-effects, akin 
                 to <CodePoint>void</CodePoint> in many programming languages.
             </p>
         </>),
         GrammarSection("Bool", [], <>
             <p>
-                <CodePoint>palm.Boolean</CodePoint> is a boolean type whose only values 
+                <CodePoint>piston.Boolean</CodePoint> is a boolean type whose only values 
                 are <CodePoint>true</CodePoint> and <CodePoint>false</CodePoint>. It has several built-in operators
                 within the language.
             </p>
         </>),
         GrammarSection("Integer Values", [], <>
             <p>
-                Palm has 4 signed integer types of the form <CodePoint>IntN</CodePoint> where the 
+                Piston has 4 signed integer types of the form <CodePoint>IntN</CodePoint> where the 
                 <CodePoint>N</CodePoint> represents the number of bits in the binary representation.
                 The inegers are represented in two's compliment, meaning their values range from
                 -2<sup>N</sup> to 2<sup>N</sup> - 1.
@@ -78,31 +78,31 @@ export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.Typ
         </>),
         GrammarSection("Floating-point Types", [], <>
             <p>
-                Palm has two IEEE 754 floating-point types:
+                Piston has two IEEE 754 floating-point types:
             </p>
             <ul>
-                <li><CodePoint>palm.Float32</CodePoint> which is single-precision.</li>
-                <li><CodePoint>palm.Float64</CodePoint> which is double-precision.</li>
+                <li><CodePoint>piston.Float32</CodePoint> which is single-precision.</li>
+                <li><CodePoint>piston.Float64</CodePoint> which is double-precision.</li>
             </ul>
         </>),
         GrammarSection("Char", [], <>
             <p>
-                <CodePoint>palm.Char</CodePoint> is a type which represents a unicode symbol in UTF-16 character encoding.
+                <CodePoint>piston.Char</CodePoint> is a type which represents a unicode symbol in UTF-16 character encoding.
             </p>
         </>),
         GrammarSection("String", [], <>
             <p>
-                <CodePoint>palm.String</CodePoint> is a type which represents a sequence of
+                <CodePoint>piston.String</CodePoint> is a type which represents a sequence of
             </p>
         </>),
         GrammarSection("Arrays", [], <>
             <p>
-                <CodePoint>palm.Array[T]</CodePoint> is a built-in parameterized type which represents an indexed fixed-sized
+                <CodePoint>piston.Array[T]</CodePoint> is a built-in parameterized type which represents an indexed fixed-sized
                 collection of values of a single type. It contains the following members:
             </p>
             <p>
                 There are also specialized array types for some of the aforementioned built-in types, 
-                namely <CodePoint>palm.BoolArray</CodePoint>,  <CodePoint>palm.Int8Array</CodePoint>, <CodePoint>palm.Int16Array</CodePoint>, <CodePoint>palm.Int32Array</CodePoint>, <CodePoint>palm.Int64rray</CodePoint>, <CodePoint>palm.Float32Array</CodePoint>, <CodePoint>palm.Float64Array</CodePoint> and <CodePoint>palm.CharArray</CodePoint>.
+                namely <CodePoint>piston.BoolArray</CodePoint>,  <CodePoint>piston.Int8Array</CodePoint>, <CodePoint>piston.Int16Array</CodePoint>, <CodePoint>piston.Int32Array</CodePoint>, <CodePoint>piston.Int64rray</CodePoint>, <CodePoint>piston.Float32Array</CodePoint>, <CodePoint>piston.Float64Array</CodePoint> and <CodePoint>piston.CharArray</CodePoint>.
             </p>
         </>)
     ]),
@@ -115,7 +115,7 @@ export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.Typ
             <p>
                 The functions and properties inside a trait are called members and member functions may also be reffered to as
                 methods. Unlike functions and properties defined at the file-level, which may also be referred to as top-level,
-                all type members take an extra parameter which is an instance of the enclosing type. You are able to refer to it
+                all type members take an extra parameter which is an instance of the enclosing type. This rerefence can be accessed
                 using the <CodePoint>this</CodePoint> keyword, however this is usually unecessary as all calls to type members
                 use it implicitly.
             </p>
@@ -178,7 +178,7 @@ export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.Typ
     </>),
     GrammarSection("Type Parameters", [typeDefs.TypeParams, typeDefs.TypeArg, typeDefs.TypeArgs], <>
         <p>
-            All declarations in Palm can take zero or more type parameters which are defined in
+            All declarations in Piston can take zero or more type parameters which are defined in
             sqaure brackets after the defining identifier. Similarly, they can be defined
         </p>
     </>, [
@@ -205,16 +205,18 @@ export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.Typ
                 <p>
                     Covariance means that if a type <CodePoint>A</CodePoint> subtypes <CodePoint>B</CodePoint> then
                     <CodePoint>I[A]</CodePoint> subtypes <CodePoint>I[B]</CodePoint>. This can be enabled by using the
-                    subtype symbol in front of the type argument. A consequence of this variance is that you may only call 
-                    members of the type which do not take parameters of the type parameter the argument corresponds to.
+                    subtype symbol in front of the type argument. A consequence of this variance is that only 
+                    members of the type which do not take parameters of the type parameter the argument corresponds to
+                    may be called on an object of said type.
                 </p>
             </>),
             GrammarSection("Contravariance", [], <>
                 <p>
                     Contravariance means that if a type <CodePoint>A</CodePoint> subtypes <CodePoint>B</CodePoint> then
                     <CodePoint>I[B]</CodePoint> subtypes <CodePoint>I[A]</CodePoint>. This can be enabled by using the
-                    supertype symbol in front of the type argument. A consequence of this variance is that you may only call 
-                    members of the type which do not return value of the type parameter the argument corresponds to.
+                    supertype symbol in front of the type argument. A consequence of this variance is that only 
+                    members of the type which do not return values of the type parameter the argument corresponds to
+                    may be called on an object of said type.
                 </p>
             </>)
         ])

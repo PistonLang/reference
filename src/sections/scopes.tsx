@@ -2,7 +2,7 @@ import { AlgorithmSection, GrammarSection } from "../sections";
 
 export const scopes = GrammarSection("Scopes", [], <>
     <p>
-        Palm code is structurally comprised of a hierarchy of sections called scopes.
+        Piston code is structurally comprised of a hierarchy of sections called scopes.
         Scopes define the accessibility and lifetimes of items defined within them, as well
         as a context which maps identifiers to particular set of items.
         There are two types of scopes: declaration scopes and expression scopes.
@@ -26,7 +26,7 @@ export const scopes = GrammarSection("Scopes", [], <>
             bound to zero or more functions and/or setters with differing parameters.
         </p>
         <p>
-            Palm allows shadowing which is the ability for an already bound identifier to be bound to a new 
+            Piston allows shadowing which is the ability for an already bound identifier to be bound to a new 
             item in a nested scope.
         </p>
     </>),
@@ -50,7 +50,7 @@ export const scopes = GrammarSection("Scopes", [], <>
             handled in their own way. 
         </p>
         <p>
-            Palm uses one of two algorithms that work within the context of a scope based on the type of
+            Piston uses one of two algorithms that work within the context of a scope based on the type of
             expressions.
         </p>
     </>, [
@@ -107,8 +107,8 @@ export const scopes = GrammarSection("Scopes", [], <>
                     It should be noted that generic parameters as treated as their type bounds. 
                 </li>
                 <li>
-                    If the first candidate does not have the same signature as any other candidate, return it, otherwise
-                    yield an error.
+                    If there exists a candidate such that the previous sorting algorithm is undecisive when applied to
+                    it and the first element, an error occurs. Otherwise, the first item is returned.
                 </li>
             </ol>
         </>, <>
@@ -119,9 +119,49 @@ export const scopes = GrammarSection("Scopes", [], <>
             </p>
             <p>
                 This algorithm is applied in the package scope of a package which is used in an Access Expression
-                that is directly contained within a Call Expression. Similarly, it is applied on the type scope
-                of a value that is contained within such an expression.
+                that is directly contained within a Call Expression. 
             </p>
-        </>)
+            <p>
+                This algorithm is applied to the type scope of a value which is the direct child of an
+                Access Expression directly contained within a Call Expression, as well as expressoins which
+                get resolved to such expressions, including Binary, Unary, Call and Call + Assignment Expressions.
+            </p>
+        </>),
+        AlgorithmSection("Assignment Resolution Algorithm", <>
+        <p>
+            For a given scope context C, identifier I and expression E.
+        </p>
+        <ol>
+            <li>
+                A list of candidates is formed of all the settters in the set that C maps I to.
+            </li>
+            <li>
+                The list is trimmed such that a candidate remains if the type of the parameter of the setter
+                is a supertype of the type of E.
+            </li>
+            <li>
+                The candidates are sorted such that a candidate A goes before candidate B if the type of the
+                parameter of A is a subtype of the parameter of B
+            </li>
+            <li>
+                If there exists a candidate such that the previous sorting algorithm is undecisive when applied to
+                it and the first element, an error occurs. Otherwise, the first item is returned.
+            </li>
+        </ol>
+    </>, <>
+        <p>
+            As can be seen, this is a variant of the previous algorithm, specialied for setters rather than functions.
+        </p>
+        <p>
+            This algorithm is recursively applied from the inner-most scope outwards on Identifier Expressions
+            which are immediately contained within Assignment Espressions, such that if there is no result for
+            the current scope, the algorithm is applied on its parent scope.
+        </p>
+        <p>
+            This algorithm is applied in the package scope of a package which is used in an Access Expression
+            that is directly contained within am Assignment Expression. Similarly, it is applied on the type scope
+            of a value that is contained within such an expression.
+        </p>
+    </>)
     ])
 ])

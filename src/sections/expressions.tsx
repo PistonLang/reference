@@ -9,36 +9,40 @@ export const expressions = GrammarSection("Expressions", [defs.Expression], [], 
     </>, [
         GrammarSection("Identifier Expression", [defs.IdentifierExpression], <>
             <p>
-                You can use an identifier to reference a local or imported item or package with the corresponding name.
+                An identifier can be used to reference a local or imported item or package with the corresponding name.
             </p>
         </>),
         GrammarSection("Literal Expression", [defs.LiteralExpression]),
         GrammarSection("This Expression", [defs.ThisExpression], <>
             <p>
-                You can use <CodePoint>this</CodePoint> inside of a class or trait to refer to the current
+                <CodePoint>this</CodePoint> can be used inside of a class or trait to refer to the current
                 instance.
             </p>
         </>),
         GrammarSection("Super Expression", [defs.SuperExpression], <>
             <p>
-                You can use <CodePoint>super</CodePoint> to call the supertype's implementation of an item.
-                In the case that there are multiple supertypes with such an implmentation, you can pass the
-                exact supertype as a type argument.
+                <CodePoint>super</CodePoint> can be used to call the supertype's implementation of a member.
+                In the case that there are multiple supertypes with such an implmentation, the exact supertype
+                needs to be passed in as a type argumet.
+            </p>
+            <p>
+                Super Expressions cannot be used by themselves - they must be children of other expressions.
             </p>
         </>),
         GrammarSection("Nested Expression", [defs.NestedExpression], <>
             <p>
-                Every expression can be put in curly braces so it can be treated as a term.
+                Every expression can be put in parentheses so it can be treated as a term.
             </p>
         </>),
         GrammarSection("Access Expression", [defs.AccessExpression], <>
             <p>
-                You can put an identifier after a dot to access a member of a value or a subpackage of a package.
+                Every term may be succeeded by a dot and and identifier to access a member, if the term represents
+                a value, or to access a subpackage, if it represents a package.
             </p>
         </>),
         GrammarSection("Call Expression", [defs.CallExpression], <>
             <p>
-                To call a function you need to pass it arguments inside parentheses. It should be noted that
+                A function can be called by passing it arguments inside parentheses. It should be noted that
                 this needs to be done on the exact same like, otherwise the parentheses will be treated as the
                 start of a nested expression.
             </p>
@@ -64,7 +68,7 @@ export const expressions = GrammarSection("Expressions", [defs.Expression], [], 
         defs.AndExpression, defs.OrExpression
     ], <>
         <p>
-            All binary operators in Palm, aside for <CodePoint>&&</CodePoint> amd <CodePoint>||</CodePoint> correspond
+            All binary operators in Piston, aside for <CodePoint>&&</CodePoint> amd <CodePoint>||</CodePoint> correspond
             to certain member functions on the first operand. Namely
         </p>
         <ul>
@@ -83,12 +87,27 @@ export const expressions = GrammarSection("Expressions", [defs.Expression], [], 
             For an operator to be treated as a binary one, there needs to either be whitespace on both sides of it
             or no whitespace on either side of it.
         </p>
+        <p>
+            The type of comparison, equality and logical operators is <CodePoint>piston.Bool</CodePoint>, while for
+            the rest it depends on the underlying function.
+        </p>
+        <p>
+            Unlike the rest of the operators, the logical operators use short-circuiting, meaning that the following
+            equivalences hold:
+        </p>
+        <ul>
+            <li><CodePoint>(a && b) == (a ? b : false)</CodePoint></li>
+            <li><CodePoint>(a || b) == (a ? true : b)</CodePoint></li>
+        </ul>
     </>),
     GrammarSection("Assignment Expression", [defs.AssignExpression], <>
         <p>
-            You can use the <CodePoint>=</CodePoint> operator on an identifier or access expression to call
-            the corresponding setter, assuming it exists. When use on a call expression, it calls the object's
+            The <CodePoint>=</CodePoint> operator can be used on an identifier or access expression to call
+            the corresponding setter, assuming it exists. When used on a call expression, it calls the object's
             <CodePoint>update</CodePoint> function. All other cases are errors.
+        </p>
+        <p>
+            The type of an Assignment Expression is always <CodePoint>piston.Unit</CodePoint>.
         </p>
     </>),
     GrammarSection("Ternary Expression", [defs.TernaryExpression], <>
@@ -96,6 +115,10 @@ export const expressions = GrammarSection("Expressions", [defs.Expression], [], 
             The ternary operator is used for choosing which expression to evaluate based on a given value.
             Namely, if the value is <CodePoint>true</CodePoint>, the first expression will be evaluated,
             otherwise the second one.
+        </p>
+        <p>
+            The type of the expression is the least common supertype of the types of the two possible
+            expressions which may be evaluated.
         </p>
     </>),
 ])

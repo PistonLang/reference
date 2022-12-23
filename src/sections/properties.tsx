@@ -26,7 +26,7 @@ export const properties = GrammarSection("Properties", [], <>
         <p>
             Stored properties are initalized when the file is being loaded and when a class instance is created. Unlike functions,
             getters and setters, the order in which they are written matters as that is the order in which they will be
-            evaluated. As such, you cannot use a stored property in the expression of another before it is initialized.
+            evaluated. As such, stored property cannot be used in the expression of another stored property before it is initialized.
             That said it is not expected that indirect access by calling a function which uses it is checked.
         </p>
     </>),
