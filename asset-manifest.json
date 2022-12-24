@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/palm-spec/static/css/main.410e9f85.css",
-    "main.js": "/palm-spec/static/js/main.0eb5ba60.js",
-    "static/media/piston.svg": "/palm-spec/static/media/piston.203b86cd58727f0c6749cd33b348af0f.svg",
-    "static/media/github.svg": "/palm-spec/static/media/github.b32468d2ee7d3115f7c54483a22b3323.svg",
-    "static/media/discord.svg": "/palm-spec/static/media/discord.239e698a22de8fcab5bb495471d855e1.svg",
-    "static/media/dropdown.svg": "/palm-spec/static/media/dropdown.c3876f18ce4de16df5761e743cf03fe6.svg",
-    "index.html": "/palm-spec/index.html",
-    "main.410e9f85.css.map": "/palm-spec/static/css/main.410e9f85.css.map",
-    "main.0eb5ba60.js.map": "/palm-spec/static/js/main.0eb5ba60.js.map"
+    "main.css": "/piston-spec/static/css/main.410e9f85.css",
+    "main.js": "/piston-spec/static/js/main.af804293.js",
+    "static/media/piston.svg": "/piston-spec/static/media/piston.203b86cd58727f0c6749cd33b348af0f.svg",
+    "static/media/github.svg": "/piston-spec/static/media/github.b32468d2ee7d3115f7c54483a22b3323.svg",
+    "static/media/discord.svg": "/piston-spec/static/media/discord.239e698a22de8fcab5bb495471d855e1.svg",
+    "static/media/dropdown.svg": "/piston-spec/static/media/dropdown.c3876f18ce4de16df5761e743cf03fe6.svg",
+    "index.html": "/piston-spec/index.html",
+    "main.410e9f85.css.map": "/piston-spec/static/css/main.410e9f85.css.map",
+    "main.af804293.js.map": "/piston-spec/static/js/main.af804293.js.map"
   },
   "entrypoints": [
     "static/css/main.410e9f85.css",
-    "static/js/main.0eb5ba60.js"
+    "static/js/main.af804293.js"
   ]
 }
