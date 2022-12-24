@@ -1,7 +1,7 @@
 {
   "name": "piston-spec",
   "version": "0.1.0",
-  "homepage": "https://palmlang.github.io/palm-spec",
+  "homepage": "https://pistonlang.github.io/piston-spec/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
