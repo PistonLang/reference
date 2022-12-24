@@ -42,11 +42,11 @@ const SideBar = (props: {sections: Section[]}) => <div className='sidebar'>
         {props.sections.map((sec) => 
         <BrowserRouter>
         <Routes>
-            <Route path={`/palm-spec/${sec.id}`} element={
-                <a href={`/palm-spec/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></a>
+            <Route path={`/piston-spec/${sec.id}`} element={
+                <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></a>
             }/>
             <Route path={`/*`} element={
-                <a href={`/palm-spec/${sec.id}`}><div className='sidebar-link'>{sec.name}</div></a>
+                <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link'>{sec.name}</div></a>
             }/>
         </Routes>
         </BrowserRouter>
@@ -55,7 +55,7 @@ const SideBar = (props: {sections: Section[]}) => <div className='sidebar'>
 </div>
 
 const sectionsToRoutes = (sects: Section[]) => sects.map((curr) => 
-    <Route path={`/palm-spec/${curr.id}`} element={curr.toComponent(0)}></Route>
+    <Route path={`/piston-spec/${curr.id}`} element={curr.toComponent(0)}></Route>
 )
 
 const sections = [
@@ -83,7 +83,7 @@ export const App = () => {
                     <BrowserRouter>
                         <Routes>
                             {sectionsToRoutes(sections)}
-                            <Route path='/palm-spec/*' element={introduction.toComponent(0)}></Route>
+                            <Route path='/piston-spec/*' element={introduction.toComponent(0)}></Route>
                         </Routes>
                     </BrowserRouter>
                 </div>
