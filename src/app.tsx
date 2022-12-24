@@ -43,10 +43,10 @@ const SideBar = (props: {sections: Section[]}) => <div className='sidebar'>
         <BrowserRouter basename='/piston-spec'>
         <Routes>
             <Route path={`/${sec.id}`} element={
-                <a href={`/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></a>
+                <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></a>
             }/>
             <Route path={`/*`} element={
-                <a href={`/${sec.id}`}><div className='sidebar-link'>{sec.name}</div></a>
+                <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link'>{sec.name}</div></a>
             }/>
         </Routes>
         </BrowserRouter>
