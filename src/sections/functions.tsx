@@ -2,7 +2,7 @@ import { CodePoint, GrammarSection } from "../sections";
 import types from '../grammar/types'
 import stmts from '../grammar/statements'
 
-export const functions = GrammarSection("Functions", [
+const functions = GrammarSection("Functions", [
     types.Identifier, stmts.FunctionParam, stmts.FunctionParams, stmts.FunctionLikeDef, stmts.FunctionDef
 ], <>
     <p>
@@ -21,3 +21,5 @@ export const functions = GrammarSection("Functions", [
         of their parameters.
     </p>
 </>)
+
+export default functions

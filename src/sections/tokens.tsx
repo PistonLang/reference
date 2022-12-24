@@ -1,7 +1,7 @@
 import defs from "../grammar/tokens";
 import { CodePoint, GrammarSection } from "../sections";
 
-export const tokens = GrammarSection("Lexical Tokens", [defs.PistonToken], <>
+const tokens = GrammarSection("Lexical Tokens", [defs.PistonToken], <>
     <p>
         Piston code is represented as a sequence of UTF-8 code points. Said code points can then be transformed
         into a sequence of tokens such that the longest route is always taken.
@@ -11,7 +11,7 @@ export const tokens = GrammarSection("Lexical Tokens", [defs.PistonToken], <>
         defs.letter, defs.digit, defs.underscore, defs.apostrophe, defs.identifierHead, defs.identifierTail, defs.identifier
     ], <>
         <p>
-            Identifiers are sequences of characters which are used for binding types, variables, fuctions and packages.
+            Identifiers are sequences of characters which are used for binding types, variables, functions and packages.
             An identifier must start with a letter or underscore and can later also contain digits and apostrophes, as primes.
         </p>
     </>),
@@ -123,3 +123,5 @@ export const tokens = GrammarSection("Lexical Tokens", [defs.PistonToken], <>
         </>)
     ])
 ])
+
+export default tokens

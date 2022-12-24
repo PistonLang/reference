@@ -35,10 +35,16 @@ export interface GrammarRef extends GrammarPoint {
     name: string
 }
 
+const Pipe = () => <div className='pipe'>|</div>
+
 export const union = (...cases: [GrammarPoints, ...GrammarPoints[]]): GrammarPoint => ({
     toComponent: (group: boolean) => [
     ...group ? ["("] : [],
-    ...cases.reduce((last, curr, index) => [...last, pointsToComponents(curr, true), ...index !== cases.length - 1 ? [" | "] : []], [] as ReactNode[]),
+    ...cases.reduce((last, curr, index) => 
+        index === 0 
+            ? [<div className='union-part'>{pointsToComponents(curr, true)}</div>] 
+            : [...last, <div className='union-part'><Pipe/>{pointsToComponents(curr, true)}</div>], [] as ReactNode[]
+    ),
     ...group ? [")"] : [],
     ]
 })
@@ -76,11 +82,11 @@ export const toDefs = <T extends string,>(refs: Record<T, GrammarRef>, _defs: Re
         {} as Record<T, GrammarInfo>
     )
 
-export const Grammar = ({terms}: {terms:GrammarInfo[]}): ReactElement => {
-    const length = Math.max(...terms.map((elem) => elem.ref.name.length))
-    const children = terms.map((curr) => (<div className='production'>
+export const Grammar = ({children}: {children:GrammarInfo[]}): ReactElement => {
+    const length = Math.max(...children.map((elem) => elem.ref.name.length))
+    const terms = children.map((curr) => (<div className='production'>
         <p className='production-left'><span className='production-name' id={curr.ref.name}>{curr.ref.name.padEnd(length)}</span> = </p>
         <p className='production-right'>{pointsToComponents(curr.grammar)}</p>
     </div>))
-    return <div className='grammar'>{children}</div>
+    return <div className='grammar'>{terms}</div>
 }

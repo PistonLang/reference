@@ -12,7 +12,7 @@ const _defs: Record<keyof typeof stmts, GrammarPoints> = {
     SetterDef: [tokens.setKw, stmts.FunctionLikeDef],
     StatementBody: [many(stmts.Statement, tokens.commaOrNL), option(stmts.Statement)],
     StatementBlock: [tokens.lBrace, stmts.StatementBody, tokens.rBrace],
-    SuperTypes: [tokens.subtype, types.TypeInstance, many(tokens.comma, types.TypeInstance)],
+    SuperTypes: [tokens.subtype, types.IntersectionType],
     ClassDef: [tokens.classKw, types.Identifier, option(types.TypeParams), option(stmts.FunctionParams), option(stmts.SuperTypes), option(types.WhereClause), option(stmts.StatementBlock)],
     TraitDef: [tokens.traitKw, types.Identifier, option(types.TypeParams), option(stmts.SuperTypes), option(types.WhereClause), option(stmts.StatementBlock)],
     File: [option(stmts.Import), stmts.StatementBody, tokens.eof],

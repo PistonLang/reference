@@ -3,8 +3,7 @@ import { tokens, types } from "./refs"
 
 const _defs: Record<keyof typeof types, GrammarPoints> = {
     TypePath: union(types.PathSegment, [types.TypePath, tokens.dot, types.PathSegment]),
-    TypeUnion: [types.TypeInstance, many(tokens.plus, types.TypeInstance)],
-    TypeBound: [types.Identifier, tokens.subtype, types.TypeUnion],
+    TypeBound: [types.Identifier, tokens.subtype, types.IntersectionType],
     TypeParams: [tokens.lBracket, many(types.Identifier, option(tokens.commaOrNL)), option(types.Identifier), tokens.rBracket],
     TypeArg: [option(union(tokens.subtype, tokens.supertype)), types.TypeInstance],
     TypeArgs: [tokens.lBracket, many(types.TypeArg, option(tokens.commaOrNL)), option(types.TypeArg), tokens.rBracket],
@@ -12,6 +11,7 @@ const _defs: Record<keyof typeof types, GrammarPoints> = {
     NestedType: [tokens.lParen, types.TypeInstance, tokens.rParen],
     NullableType: [types.TypeInstance, tokens.qMark],
     TypeInstance: union(types.TypePath, types.NestedType, types.NullableType),
+    IntersectionType: [types.TypeInstance, many(tokens.and, types.TypeInstance)],
     PathSegment: [types.Identifier, option(types.TypeArgs)],
     Identifier: union(tokens.identifier, tokens.getKw, tokens.setKw, tokens.whereKw),
 }

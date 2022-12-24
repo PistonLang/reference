@@ -1,6 +1,6 @@
 import { AlgorithmSection, GrammarSection } from "../sections";
 
-export const scopes = GrammarSection("Scopes", [], <>
+const scopes = GrammarSection("Scopes", [], <>
     <p>
         Piston code is structurally comprised of a hierarchy of sections called scopes.
         Scopes define the accessibility and lifetimes of items defined within them, as well
@@ -165,3 +165,5 @@ export const scopes = GrammarSection("Scopes", [], <>
     </>)
     ])
 ])
+
+export default scopes

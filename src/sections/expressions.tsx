@@ -1,7 +1,7 @@
 import defs from "../grammar/expressions";
 import { CodePoint, GrammarSection } from "../sections";
 
-export const expressions = GrammarSection("Expressions", [defs.Expression], [], [
+const expressions = GrammarSection("Expressions", [defs.Expression], [], [
     GrammarSection("Term", [defs.Term], <>
         <p>
             Terms are operands for binary operators.
@@ -122,3 +122,5 @@ export const expressions = GrammarSection("Expressions", [defs.Expression], [], 
         </p>
     </>),
 ])
+
+export default expressions

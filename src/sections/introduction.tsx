@@ -1,6 +1,6 @@
 import { GrammarSection } from "../sections";
 
-export const introduction = GrammarSection("Introduction", [], <>
+const introduction = GrammarSection("Introduction", [], <>
     <p>
         This is a reference manual for the Piston programming language.
     </p>
@@ -52,3 +52,5 @@ export const introduction = GrammarSection("Introduction", [], <>
         </p>
     </>)
 ])
+
+export default introduction

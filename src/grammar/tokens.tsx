@@ -61,6 +61,7 @@ const _defs: Record<keyof typeof tk, GrammarPoints> = {
     minus: '-',
     star: '*',
     slash: '/',
+    and: '&',
     andAnd: '&&',
     orOr: '||',
     less: '<',
@@ -83,8 +84,9 @@ const _defs: Record<keyof typeof tk, GrammarPoints> = {
         tk.nullKw, tk.identifier, tk.whereKw, tk.importKw, tk.getKw, tk.setKw, tk.valKw, tk.varKw, tk.defKw,
         tk.classKw, tk.traitKw, tk.comment, tk.whitespace, tk.newline, tk.eof, 
         tk.eq, tk.eqEq, tk.eMarkEq, tk.less, tk.greater, tk.lessEq, tk.greaterEq, 
-        tk.andAnd, tk.orOr, tk.plus, tk.minus, tk.star, tk.slash, tk.dot, tk.comma, tk.colon, tk.qMark,
-        tk.lParen, tk.rParen, tk.lBracket, tk.rBracket, tk.lBrace, tk.rBrace, tk.arrow, tk.subtype, tk.supertype
+        tk.andAnd, tk.orOr, tk.plus, tk.minus, tk.star, tk.slash, tk.dot, tk.comma, tk.qMark,
+        tk.lParen, tk.rParen, tk.lBracket, tk.rBracket, tk.lBrace, tk.rBrace, 
+        tk.colon, tk.arrow, tk.and, tk.subtype, tk.supertype
     ),
 }
 

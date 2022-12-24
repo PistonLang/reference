@@ -1,7 +1,7 @@
 import defs from "../grammar/statements";
 import { GrammarSection } from "../sections";
 
-export const packageAndModules = GrammarSection("Packages and Modules", [], <>
+const packageAndModules = GrammarSection("Packages and Modules", [], <>
     <p>
         Piston code is organized in modules, made up of packages, which consist of multiple files.
     </p>
@@ -45,3 +45,5 @@ export const packageAndModules = GrammarSection("Packages and Modules", [], <>
         </>)
     ])
 ])
+
+export default packageAndModules

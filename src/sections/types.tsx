@@ -2,7 +2,7 @@ import typeDefs from "../grammar/types";
 import stmtDefs from "../grammar/statements";
 import { CodePoint, GrammarSection } from "../sections";
 
-export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.TypePath, typeDefs.TypeInstance, typeDefs.NestedType], <>
+const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.TypePath, typeDefs.TypeInstance, typeDefs.NestedType], <>
     <p>
         Types are sets of values with a corresponding set of operations.
     </p>
@@ -31,7 +31,12 @@ export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.Typ
         Type instances are used for specifying the set of values which a function/property can input and output.
     </p>
 </>, [
-    GrammarSection("Built-in Types", [], [], [
+    GrammarSection("Built-in Types", [], <>
+        <p>
+            For the most part, Piston can function normally without the standard library. The execption to this
+            are the so-called built-in types given below.
+        </p>
+    </>, [
         GrammarSection("Any", [], <>
             <p>
                 <CodePoint>piston.Any</CodePoint> is the supertype of a non-null types. As a result, whenever a list of supertypes
@@ -98,7 +103,7 @@ export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.Typ
         GrammarSection("Arrays", [], <>
             <p>
                 <CodePoint>piston.Array[T]</CodePoint> is a built-in parameterized type which represents an indexed fixed-sized
-                collection of values of a single type. It contains the following members:
+                collection of values of a single type.
             </p>
             <p>
                 There are also specialized array types for some of the aforementioned built-in types, 
@@ -106,18 +111,30 @@ export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.Typ
             </p>
         </>)
     ]),
-    GrammarSection("Custom Types", [], [], [
-        GrammarSection("Traits", [stmtDefs.SuperTypes, stmtDefs.TraitDef], <>
+    GrammarSection("Classifier Types", [stmtDefs.Statement, stmtDefs.StatementBody, stmtDefs.StatementBlock, stmtDefs.SuperTypes], <>
+        <p>
+            Classifier types represent the building blocks of the type system. They are regular types which may be defined
+            by anyone.
+        </p>
+        <p>
+            Every classifier type can have a declaration block where its member properties and functions (methods) are defined. 
+            Unlike functions and properties defined at the file-level, which may also be referred to as "top-level", all type 
+            members implicitly take an extra parameter which is an instance of the enclosing type. This refence can be accessed
+            using the <CodePoint>this</CodePoint> keyword, however this is usually unecessary as all calls to type members
+            use it implicitly.
+        </p>
+            The declaration blocks of types may also contain nested types, though these types are in no way members of the
+            type, they merely use it as part of their path.
+        <p>
+            Every classifier comes with an intersection of supertypes it is the subtype of. If it is left out, then it is
+            <CodePoint>piston.Any</CodePoint> by default. Types cannot form dependency cycles, nor can a type directly or indirectly 
+            subtype the same type with different type arguments.
+        </p>
+    </>, [
+        GrammarSection("Traits", [stmtDefs.TraitDef], <>
             <p>
                 Traits are types which can be subtyped, but cannot be instantiated by themselves. They are unable to store data,
                 but they can define functions and properties which need to be implemented by their subtypes.
-            </p>
-            <p>
-                The functions and properties inside a trait are called members and member functions may also be reffered to as
-                methods. Unlike functions and properties defined at the file-level, which may also be referred to as top-level,
-                all type members take an extra parameter which is an instance of the enclosing type. This rerefence can be accessed
-                using the <CodePoint>this</CodePoint> keyword, however this is usually unecessary as all calls to type members
-                use it implicitly.
             </p>
             <p>
                 Trait members may or may not have default implementations which can be overriden inside their subtypes.
@@ -128,15 +145,6 @@ export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.Typ
                 There it may be overriden such that it has a different implementation. 
                 Additionally, its parameters may be renamed and its return type may be changed
                 to a subtype of the one used in the supertype.
-            </p>
-            <p>
-                If the list of supertypes contains types which are subtypes of each other, only the lowest subtype will
-                be counted, thus there would be no default implmentation conflicts between them. Types cannot form dependency cycles, 
-                nor can a type directly or indirectly subtype the same type with different type arguments.
-            </p>
-            <p>
-                The declaration blocks of types may also contain nested types, though these types are in no way members of
-                type, they merely use it as a namespace.
             </p>
         </>),
         GrammarSection("Classes", [stmtDefs.ClassDef], <>
@@ -176,13 +184,37 @@ export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.Typ
             The nullable variants are considered supertypes of the corresponding non-null types.
         </p>
     </>),
+    GrammarSection("Intersection Types", [typeDefs.NullableType], <>
+        <p>
+            Intersection types are used to represent a type which is a subtype of all intersecting types. Such types
+            are only used in class definitions and type parameter bounds.
+        </p>
+        <p>
+            Every intersection type can be uniquely reduced in a finite number of steps such that at each step an
+            intersecting type is removed if another type in the intersection is a subtype of it. Additionally, if it
+            is impossible for a type to be a subtype of all the intersecting types, the intersection reduces 
+            to <CodePoint>piston.Nothing</CodePoint>. It is expected that the compiler does this reduction before the 
+            type is used for any other compilation step.
+        </p>
+    </>),
+    GrammarSection("Union Types", [typeDefs.NullableType], <>
+        <p>
+            A union type is a type such that its set of values is the union of the sets of the types that go into the union.
+            Union types cannot be expressed within the language, they are merely meant for internal use.
+        </p>
+        <p>
+            Every union type can be uniquely reduced in a finite number of steps such that at each step a
+            type in the union is removed if another type in the union is a supertype of it. It is expected that
+            the compiler does this reduction before the type is used for any other compilation step.
+        </p>
+    </>),
     GrammarSection("Type Parameters", [typeDefs.TypeParams, typeDefs.TypeArg, typeDefs.TypeArgs], <>
         <p>
             All declarations in Piston can take zero or more type parameters which are defined in
             sqaure brackets after the defining identifier. Similarly, they can be defined
         </p>
     </>, [
-        GrammarSection("Where Clause", [typeDefs.TypeUnion, typeDefs.TypeBound, typeDefs.WhereClause], <>
+        GrammarSection("Where Clause", [typeDefs.TypeBound, typeDefs.WhereClause], <>
             <p>
                 Every type parameter has an upper bound, which is <CodePoint>Any?</CodePoint> by default.
                 However, at the end of the type, functions, getter and setter header, a <CodePoint>where</CodePoint> clause
@@ -222,3 +254,5 @@ export const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.Typ
         ])
     ])
 ])
+
+export default types

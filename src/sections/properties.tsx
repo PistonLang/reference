@@ -1,7 +1,7 @@
 import stmts from "../grammar/statements";
 import { CodePoint, GrammarSection } from "../sections";
 
-export const properties = GrammarSection("Properties", [], <>
+const properties = GrammarSection("Properties", [], <>
     <p>
         Properties are a pair of a getter and, potentially, setter function bound to an identifier.
     </p>
@@ -31,3 +31,5 @@ export const properties = GrammarSection("Properties", [], <>
         </p>
     </>),
 ])
+
+export default properties
