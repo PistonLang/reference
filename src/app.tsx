@@ -111,7 +111,7 @@ export const App = () => {
 	const [hideSide, setHideSide] = useState(true);
 	const update = () => setHideSide((val) => !val);
 	return (
-		<BrowserRouter basename="piston-spec">
+		<BrowserRouter basename="reference">
 			<NavBar navUpdate={update} />
 			<div className={hideSide ? 'noSidebar' : 'withSidebar'}>
 				<SideBar sections={sections} />

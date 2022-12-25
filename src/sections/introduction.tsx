@@ -41,10 +41,10 @@ const introduction = GrammarSection(
 			<>
 				<p>
 					Currently the Piston programming language is very far from being
-					complete and as a result this specification is highly prone to
+					complete and as a result this reference is highly prone to
 					changes. Anyone wishing to contribute to the development of the
 					language should stay up-to-date with all the changes on the
-					specification's GitHub repository.
+					reference's GitHub repository.
 				</p>
 			</>
 		),
