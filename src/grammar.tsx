@@ -1,4 +1,5 @@
 import { ReactElement, ReactNode } from 'react'
+import { HashLink } from 'react-router-hash-link'
 
 interface GrammarPoint {
     toComponent(group: boolean): ReactNode
@@ -6,13 +7,21 @@ interface GrammarPoint {
 
 export type GrammarPoints = GrammarPoint | [GrammarPoints, ...GrammarPoints[]] | string
 
-const ref = (name: string): GrammarRef => ({
-    name: name,
-    toComponent: () => (<a href={`#${name}`}>{name}</a>)
-})
+class GrammarRef implements GrammarPoint {
+    constructor(name: string, section: string) {
+        this.name = name
+        this.section = section
+    }
 
-export const toRefs = <T extends readonly string[],>(ids: T): Record<T[number], GrammarRef> =>  
-    ids.reduce((last, curr) => ({[curr]: ref(curr), ...last}), {} as Record<T[number], GrammarRef>)
+    name: string
+    section: string
+    toComponent(_group: boolean): ReactNode { 
+        return <HashLink to={{pathname: `/${this.section}`, hash: this.name}}>{this.name}</HashLink>
+    }
+}
+
+export const toRefs = <T extends readonly string[]>(section: string, ids: T): Record<T[number], GrammarRef> =>  
+    ids.reduce((last, curr) => ({[curr]: new GrammarRef(curr, section), ...last}), {} as Record<T[number], GrammarRef>)
 
 const strToComponent = (t: string) => (<span className="terminal">"{t}"</span>)
 
@@ -30,10 +39,6 @@ const pointsToComponents = (points: GrammarPoints, group: boolean = false): Reac
     : typeof points == "string"
     ? strToComponent(points)
     : points.toComponent(group)
-
-export interface GrammarRef extends GrammarPoint {
-    name: string
-}
 
 const Pipe = () => <div className='pipe'>|</div>
 

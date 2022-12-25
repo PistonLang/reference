@@ -1,6 +1,6 @@
 import { toRefs } from "../grammar";
 
-export const exprs = toRefs([
+export const exprs = toRefs('expressions', [
     "NestedExpression",
     "AccessExpression",
     "CallExpression",
@@ -21,7 +21,7 @@ export const exprs = toRefs([
     "AssignExpression",
 ] as const)
 
-export const tokens = toRefs([
+export const tokens = toRefs('lexical-tokens', [
     "character",
     "charCharacter",
     "stringCharacter",
@@ -102,20 +102,21 @@ export const tokens = toRefs([
     "PistonToken"
 ] as const)
 
-export const stmts = toRefs([
+export const props = toRefs('properties', [
+    "PropertyDef",
+    "SetterDef",
+    "GetterDef"
+] as const)
+
+export const funcs = toRefs('functions', [
     "FunctionParam",
     "FunctionParams",
-    "FunctionDef",
-    "PropertyDef",
-    "SuperTypes",
-    "ClassDef",
-    "TraitDef",
-    "GetterDef",
-    "SetterDef",
-    "Statement",
-    "StatementBody",
-    "StatementBlock",
     "FunctionLikeDef",
+    "Identifier",
+    "FunctionDef"
+] as const)
+
+export const packs = toRefs('packages-and-modules', [
     "Import",
     "ImportPath",
     "ImportSegment",
@@ -124,9 +125,14 @@ export const stmts = toRefs([
     "File"
 ] as const)
 
-export const types = toRefs([
+export const scopes = toRefs('scopes', [
+    "Statement",
+    "StatementBody",
+    "StatementBlock"
+] as const)
+
+export const types = toRefs('types', [
     "TypeInstance",
-    "Identifier",
     "PathSegment",
     "TypePath",
     "TypeParams",
@@ -136,5 +142,8 @@ export const types = toRefs([
     "WhereClause",
     "NullableType",
     "NestedType",
-    "TypeBound"
+    "TypeBound",
+    "SuperTypes",
+    "ClassDef",
+    "TraitDef"
 ] as const)

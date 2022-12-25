@@ -15,6 +15,7 @@ import { ReactComponent as Dropdown } from './svg/dropdown.svg'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Section } from './sections'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const NavBar = (props: {navUpdate: () => void}) => <header>
   <div className='header-left'>
@@ -47,19 +48,17 @@ const SideBar = (props: {sections: Section[]}) => {
         <div className='sidebar-header'>Table of contents</div>
         <div className='sidebar-link-list'>
             {props.sections.map((sec, index) => 
-              <BrowserRouter basename='/piston-spec'>
-                <Routes>
-                    <Route path={`/${sec.id}`} element={
-                        <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></a>
-                    }/>
-                    {index === 0 ? <Route path={`/`} element={
-                        <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></a>
-                    }/> : <></>}
-                    <Route path={`/*`} element={
-                        <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link'>{sec.name}</div></a>
-                    }/>
-                </Routes>
-              </BrowserRouter>
+              <Routes>
+                  <Route path={`/${sec.id}`} element={
+                      <Link to={`/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></Link>
+                  }/>
+                  {index === 0 ? <Route path="/" element={
+                      <Link to={`/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></Link>
+                  }/> : <></>}
+                  <Route path={`/*`} element={
+                      <Link to={`/${sec.id}`}><div className='sidebar-link'>{sec.name}</div></Link>
+                  }/>
+              </Routes>
             )}
         </div>
     </div>
@@ -85,21 +84,19 @@ const sections = [
 export const App = () => {
     const [hideSide, setHideSide] = useState(true)
     const update = () => setHideSide((val) => !val)
-    return <>
+    return <BrowserRouter basename='piston-spec'>
         <NavBar navUpdate={update}/>
         <div className={hideSide ? 'noSidebar' : 'withSidebar'}>
             <SideBar sections={sections}/>
             <div className='content'>
                 <div className='content-body'>
-                    <BrowserRouter basename='/piston-spec'>
-                        <Routes>
-                            {sectionsToRoutes(sections)}
-                            <Route path='/' element={introduction.toComponent(0)}></Route>
-                        </Routes>
-                    </BrowserRouter>
+                  <Routes>
+                      {sectionsToRoutes(sections)}
+                      <Route path='/' element={introduction.toComponent(0)}></Route>
+                  </Routes>
                 </div>
             </div>
         </div>
-    </>
+    </BrowserRouter>
 }
 

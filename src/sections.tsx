@@ -20,7 +20,7 @@ export class Section {
     }
 
     get id() {
-        return this.name.toLowerCase().replace(' ', '-')
+        return this.name.toLowerCase().replaceAll(' ', '-')
     }
     
     toComponent(level: number): ReactNode {
