@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/piston-spec/static/css/main.028068b0.css",
-    "main.js": "/piston-spec/static/js/main.67a1a767.js",
+    "main.css": "/piston-spec/static/css/main.2694e729.css",
+    "main.js": "/piston-spec/static/js/main.09fd74e0.js",
     "static/media/piston.svg": "/piston-spec/static/media/piston.203b86cd58727f0c6749cd33b348af0f.svg",
     "index.html": "/piston-spec/index.html",
     "static/media/github.svg": "/piston-spec/static/media/github.b32468d2ee7d3115f7c54483a22b3323.svg",
     "static/media/discord.svg": "/piston-spec/static/media/discord.239e698a22de8fcab5bb495471d855e1.svg",
     "static/media/dropdown.svg": "/piston-spec/static/media/dropdown.c3876f18ce4de16df5761e743cf03fe6.svg",
-    "main.028068b0.css.map": "/piston-spec/static/css/main.028068b0.css.map",
-    "main.67a1a767.js.map": "/piston-spec/static/js/main.67a1a767.js.map"
+    "main.2694e729.css.map": "/piston-spec/static/css/main.2694e729.css.map",
+    "main.09fd74e0.js.map": "/piston-spec/static/js/main.09fd74e0.js.map"
   },
   "entrypoints": [
-    "static/css/main.028068b0.css",
-    "static/js/main.67a1a767.js"
+    "static/css/main.2694e729.css",
+    "static/js/main.09fd74e0.js"
   ]
 }
