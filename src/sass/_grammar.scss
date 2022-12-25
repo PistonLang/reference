@@ -1,57 +1,59 @@
 .grammar {
-  margin-top: 16px;
-  border-radius: 2px;
-  padding: 8px 28px;
-  font-size: 1em;
-  background-color: hsl(0, 0%, 14%);
-  display: block;
-  font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
+	margin-top: 16px;
+	border-radius: 2px;
+	padding: 8px 28px;
+	font-size: 1em;
+	background-color: hsl(0, 0%, 14%);
+	display: block;
+	font-family: 'Source Code Pro', Consolas, 'Ubuntu Mono', Menlo,
+		'DejaVu Sans Mono', monospace, monospace !important;
 }
 
 .grammar p {
-  margin: 2px 0px;
+	margin: 2px 0px;
 }
 
 .codepoint {
-  background-color: hsl(0, 0%, 20%);
-  font-family: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
+	background-color: hsl(0, 0%, 20%);
+	font-family: 'Source Code Pro', Consolas, 'Ubuntu Mono', Menlo,
+		'DejaVu Sans Mono', monospace, monospace !important;
 }
 
 .production {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  align-content: flex-start;
-  row-gap: 0px;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	align-content: flex-start;
+	row-gap: 0px;
 }
 
 .production-left {
-  white-space: pre;
+	white-space: pre;
 }
 
 $sides: left right;
 
 @each $side in $sides {
-  .production-#{$side} {
-    margin: 0px;
-    padding: 0px;
-  }
+	.production-#{$side} {
+		margin: 0px;
+		padding: 0px;
+	}
 }
 
 .production-name {
-  font-style: italic;
-  color: var(--link-color);
+	font-style: italic;
+	color: var(--link-color);
 }
 
 .terminal {
-  color: bisque;
+	color: bisque;
 }
 
 .union-part {
-  display: inline-block;
+	display: inline-block;
 }
 
 .pipe {
-  display: inline-block;
-  padding: 0px 10px;
+	display: inline-block;
+	padding: 0px 10px;
 }
