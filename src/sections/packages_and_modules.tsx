@@ -11,7 +11,7 @@ const packageAndModules = GrammarSection("Packages and Modules", [], <>
             A module is a single compilation unit. It may represent a library or an executable program.
         </p>
         <p>
-            Modules are sort of a meta-concept in the language in the sense that they are not defined or
+            Modules are sort of a meta-concept within the language in the sense that they are not defined or
             referenced in Piston source code, but instead in a separate build system.
         </p>
     </>),

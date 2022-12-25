@@ -36,8 +36,8 @@ const typeInference = GrammarSection("Type Inference", [], <>
         <p>
             At the point that an equality constraint is given, α is to be replaced with T. If that never happens however,
             all the subtyping constraints are to be combined into one constraint α &lt;: I where I is a reduced intersection
-            of all the subtype contraints and all the supertyping constraints are to be reduced to a single constraint α &gt;: U
-            where U is a reduced union of all the supertype contraints. Then, if I = U, α = I = U.
+            of all the subtype contraints. Similarly, all the supertyping constraints are to be reduced to a single constraint 
+            α &gt;: U where U is a reduced union of all the supertype contraints. Then, if I = U, it follows that α = I = U.
         </p>
         <p>
             It is the job of the compiler to check that the equality type conforms to all subtype and supertype constraints and that

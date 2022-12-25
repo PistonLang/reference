@@ -8,7 +8,7 @@ const javaInterop = GrammarSection("Java Interop", [], <>
 </>, [
     GrammarSection("Properties", [], <>
         <p>
-            Given a string of one or more character string with a capital letter <CodePoint>X</CodePoint>,
+            Given a string of one or more character starting with a capital letter <CodePoint>X</CodePoint>,
             all methods without parameters named <CodePoint>getX</CodePoint> are treated as getters and
             all methods with one parameter named <CodePoint>setX</CodePoint> are treated as setters of the
             property named <CodePoint>X</CodePoint> with the first letter decapitalized.
@@ -67,8 +67,8 @@ const javaInterop = GrammarSection("Java Interop", [], <>
                 <li><CodePoint>piston.Array[T]</CodePoint> &lt;=&gt; <CodePoint>T[]</CodePoint></li>
             </ul>
             <p>
-                Going from Piston to Java, the second type is used in generics and as a parameter or return type of a
-                Java method which uses it. In all other scenarios, the primitive variant is to be used.
+                Going from Piston to Java, the second type is used in generics and as a parameter or return type of an
+                overriden Java method which uses it. In all other scenarios, the primitive variant is to be used.
             </p>
         </>),
         GrammarSection("Nullability", [], <>
@@ -79,8 +79,9 @@ const javaInterop = GrammarSection("Java Interop", [], <>
                 constraints α &lt;: T? and α &gt;: T.
             </p>
             <p>
-                Similarly, in Java all non-null Piston type instances are annotated with <CodePoint>org.jetbrains.annotations.NotNull</CodePoint>
-                and all nullable Piston type instances are annotated with <CodePoint>org.jetbrains.annotations.Nullable</CodePoint>.
+                Similarly, in Java all non-null Piston type instances are annotated 
+                with <CodePoint>org.jetbrains.annotations.NotNull</CodePoint> and all nullable Piston type instances are 
+                annotated with <CodePoint>org.jetbrains.annotations.Nullable</CodePoint>.
             </p>
         </>)
     ])

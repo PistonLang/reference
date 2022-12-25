@@ -5,7 +5,7 @@ const introduction = GrammarSection("Introduction", [], <>
         This is a reference manual for the Piston programming language.
     </p>
     <p>
-        Piston is a statically-typed general-prurpose programming language for the JVM with the goal of being 
+        Piston is a statically-typed general-purpose programming language for the JVM with the goal of being 
         as simplistic yet as expressive as possible. To achieve this it drastically limits the JVM's nominal
         subtyping model in favour of a powerful type system which provides a more functional approach to processing data.
     </p>
@@ -37,7 +37,7 @@ const introduction = GrammarSection("Introduction", [], <>
             using a notation similar to EBNF:
         </p>
         <ul>
-            <li>Terminal sequences are eclosed in double quotes</li>
+            <li>Terminal sequences are enclosed in double quotes</li>
             <li>Ranges of characters are represented with '...' between two characters</li>
             <li>Angled brackets are used to describe special characters</li>
             <li>Character sequences can be enclosed in parentheses</li>

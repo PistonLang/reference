@@ -4,7 +4,7 @@ const scopes = GrammarSection("Scopes", [], <>
     <p>
         Piston code is structurally comprised of a hierarchy of sections called scopes.
         Scopes define the accessibility and lifetimes of items defined within them, as well
-        as a context which maps identifiers to particular set of items.
+        as a context which maps identifiers to particular sets of items.
         There are two types of scopes: declaration scopes and expression scopes.
     </p>
 </>, [
@@ -33,7 +33,7 @@ const scopes = GrammarSection("Scopes", [], <>
     GrammarSection("Expression Scopes", [], <>
         <p>
             Expression scopes define an expression which is to be evaluated at a particular point
-            during the exection of a program. Such scopes are defined by:
+            during the execution of a program. Such scopes are defined by:
         </p>
         <ul>
             <li>Functions</li>
@@ -64,7 +64,7 @@ const scopes = GrammarSection("Scopes", [], <>
         </>, <>
             <p>
                 This algorithm is recursively applied from the inner-most scope outwards on Identifier Expressions
-                which are not immediately contained within Call Espressions, such that if there is no result for
+                which are not immediately contained within Call Expressions, such that if there is no result for
                 the current scope, the algorithm is applied on its parent scope.
             </p>
             <p>
@@ -87,7 +87,7 @@ const scopes = GrammarSection("Scopes", [], <>
                     the type of L<sub>i</sub> is a subtype of the type of the i-th parameter.
                 </li>
                 <li>
-                    If the list is empty, the first algorithm is applied to C and I and its result is returned.
+                    If the list is empty, the first algorithm is applied to C and I, and its result is returned.
                     Otherwise continue.
                 </li>
                 <li>
@@ -97,14 +97,14 @@ const scopes = GrammarSection("Scopes", [], <>
                         <li>If i is greater than #L, put A in front of B and stop the algorithm. Otherwise continue.</li>
                         <li>
                             If the type of the i-th parameter of A is equal to that of the i-th parameter of B, increment i and
-                            and return to the previos step. Otheriwse continue.
+                            return to the previos step. Otheriwse continue.
                         </li>
                         <li>
                             If the type of the i-th parameter of A is a supertype of that of B, put B in front of A, otherwise
                             put A in front of B.
                         </li>
                     </ol>
-                    It should be noted that generic parameters as treated as their type bounds. 
+                    It should be noted that generic parameters are treated as their type bounds. 
                 </li>
                 <li>
                     If there exists a candidate such that the previous sorting algorithm is undecisive when applied to
@@ -114,7 +114,7 @@ const scopes = GrammarSection("Scopes", [], <>
         </>, <>
             <p>
                 This algorithm is recursively applied from the inner-most scope outwards on Identifier Expressions
-                which are immediately contained within Call Espressions, such that if there is no result for
+                which are immediately contained within Call Expressions, such that if there is no result for
                 the current scope, the algorithm is applied on its parent scope.
             </p>
             <p>
@@ -123,7 +123,7 @@ const scopes = GrammarSection("Scopes", [], <>
             </p>
             <p>
                 This algorithm is applied to the type scope of a value which is the direct child of an
-                Access Expression directly contained within a Call Expression, as well as expressoins which
+                Access Expression directly contained within a Call Expression. The same is done to expressoins which
                 get resolved to such expressions, including Binary, Unary, Call and Call + Assignment Expressions.
             </p>
         </>),
@@ -150,7 +150,7 @@ const scopes = GrammarSection("Scopes", [], <>
         </ol>
     </>, <>
         <p>
-            As can be seen, this is a variant of the previous algorithm, specialied for setters rather than functions.
+            As can be seen, this is a variant of the previous algorithm, specialized for setters rather than functions.
         </p>
         <p>
             This algorithm is recursively applied from the inner-most scope outwards on Identifier Expressions

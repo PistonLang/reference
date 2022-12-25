@@ -39,7 +39,7 @@ const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.TypePath, 
     </>, [
         GrammarSection("Any", [], <>
             <p>
-                <CodePoint>piston.Any</CodePoint> is the supertype of a non-null types. As a result, whenever a list of supertypes
+                <CodePoint>piston.Any</CodePoint> is the supertype of all classifier types. As a result, whenever a list of supertypes
                 is left empty, <CodePoint>Any</CodePoint> will be the direct supertype of the declared type.
             </p>
             <p>
@@ -72,9 +72,9 @@ const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.TypePath, 
         </>),
         GrammarSection("Integer Values", [], <>
             <p>
-                Piston has 4 signed integer types of the form <CodePoint>IntN</CodePoint> where the 
-                <CodePoint>N</CodePoint> represents the number of bits in the binary representation.
-                The inegers are represented in two's compliment, meaning their values range from
+                Piston has 4 signed integer types of the form <CodePoint>IntN</CodePoint> where 
+                the <CodePoint>N</CodePoint> represents the number of bits in the binary representation.
+                The integers are represented in two's compliment, meaning their values range from
                 -2<sup>N</sup> to 2<sup>N</sup> - 1.
             </p>
             <p>
@@ -97,12 +97,12 @@ const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.TypePath, 
         </>),
         GrammarSection("String", [], <>
             <p>
-                <CodePoint>piston.String</CodePoint> is a type which represents a sequence of
+                <CodePoint>piston.String</CodePoint> is a type which represents an immutable sequence of characters.
             </p>
         </>),
         GrammarSection("Arrays", [], <>
             <p>
-                <CodePoint>piston.Array[T]</CodePoint> is a built-in parameterized type which represents an indexed fixed-sized
+                <CodePoint>piston.Array[T]</CodePoint> is a built-in parameterized type which represents a mutable indexed fixed-sized
                 collection of values of a single type.
             </p>
             <p>
@@ -119,16 +119,16 @@ const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.TypePath, 
         <p>
             Every classifier type can have a declaration block where its member properties and functions (methods) are defined. 
             Unlike functions and properties defined at the file-level, which may also be referred to as "top-level", all type 
-            members implicitly take an extra parameter which is an instance of the enclosing type. This refence can be accessed
+            members implicitly take an extra parameter which is an instance of the enclosing type. This reference can be accessed
             using the <CodePoint>this</CodePoint> keyword, however this is usually unecessary as all calls to type members
             use it implicitly.
         </p>
             The declaration blocks of types may also contain nested types, though these types are in no way members of the
             type, they merely use it as part of their path.
         <p>
-            Every classifier comes with an intersection of supertypes it is the subtype of. If it is left out, then it is
-            <CodePoint>piston.Any</CodePoint> by default. Types cannot form dependency cycles, nor can a type directly or indirectly 
-            subtype the same type with different type arguments.
+            Every classifier comes with an intersection of supertypes it is the subtype of. If it is left out, then it 
+            is <CodePoint>piston.Any</CodePoint> by default. Types cannot form dependency cycles, nor can a type directly 
+            or indirectly subtype the same type with different type arguments.
         </p>
     </>, [
         GrammarSection("Traits", [stmtDefs.TraitDef], <>
@@ -169,7 +169,7 @@ const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.TypePath, 
             GrammarSection("Multi-Instance Classes", [], <>
                 <p>
                     As the name suggests, multi-instance classes can have multiple instances which are created
-                    by passing arguments to a spcial function called the constructor. This function has the same
+                    by passing arguments to a special function called the constructor. This function has the same
                     name as the type and is treated as a function of the enclosing scope.
                 </p>
             </>)
@@ -181,7 +181,7 @@ const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.TypePath, 
             it also accepts the value <CodePoint>null</CodePoint>.
         </p>
         <p>
-            The nullable variants are considered supertypes of the corresponding non-null types.
+            The nullable variants are considered supertypes of their corresponding classifier types.
         </p>
     </>),
     GrammarSection("Intersection Types", [typeDefs.NullableType], <>
@@ -211,14 +211,16 @@ const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.TypePath, 
     GrammarSection("Type Parameters", [typeDefs.TypeParams, typeDefs.TypeArg, typeDefs.TypeArgs], <>
         <p>
             All declarations in Piston can take zero or more type parameters which are defined in
-            sqaure brackets after the defining identifier. Similarly, they can be defined
+            sqaure brackets after the defining identifier. Similarly, type arguments can be passed in 
+            between square brackets.
         </p>
     </>, [
         GrammarSection("Where Clause", [typeDefs.TypeBound, typeDefs.WhereClause], <>
             <p>
-                Every type parameter has an upper bound, which is <CodePoint>Any?</CodePoint> by default.
-                However, at the end of the type, functions, getter and setter header, a <CodePoint>where</CodePoint> clause
-                can be defined where the type parameters are given a constraint on their upper bound.
+                Every type parameter has a lower bound of <CodePoint>palm.Nothing</CodePoint> an upper bound, 
+                which is <CodePoint>palm.Any?</CodePoint> by default. At the end of type, function, getter, 
+                and setter headers, a <CodePoint>where</CodePoint> clause can be defined where the type parameters can be given 
+                a custom constraint on their upper bound.
             </p>
         </>),
         GrammarSection("Variance", [], <>
@@ -237,18 +239,16 @@ const types = GrammarSection("Types", [typeDefs.PathSegment, typeDefs.TypePath, 
                 <p>
                     Covariance means that if a type <CodePoint>A</CodePoint> subtypes <CodePoint>B</CodePoint> then
                     <CodePoint>I[A]</CodePoint> subtypes <CodePoint>I[B]</CodePoint>. This can be enabled by using the
-                    subtype symbol in front of the type argument. A consequence of this variance is that only 
-                    members of the type which do not take parameters of the type parameter the argument corresponds to
-                    may be called on an object of said type.
+                    subtype symbol in front of the type argument. A consequence of this variance is that every parameter
+                    of the corresponding type parameter is given the type parameter's lower bound as its type.
                 </p>
             </>),
             GrammarSection("Contravariance", [], <>
                 <p>
                     Contravariance means that if a type <CodePoint>A</CodePoint> subtypes <CodePoint>B</CodePoint> then
                     <CodePoint>I[B]</CodePoint> subtypes <CodePoint>I[A]</CodePoint>. This can be enabled by using the
-                    supertype symbol in front of the type argument. A consequence of this variance is that only 
-                    members of the type which do not return values of the type parameter the argument corresponds to
-                    may be called on an object of said type.
+                    supertype symbol in front of the type argument. A consequence of this variance is that every return value
+                    of the corresponding type parameter is given the type parameter's upper bound as its type.
                 </p>
             </>)
         ])

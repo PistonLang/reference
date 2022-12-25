@@ -77,8 +77,8 @@ const tokens = GrammarSection("Lexical Tokens", [defs.PistonToken], <>
             <p>
                 Integer literals represent values of type <CodePoint>Int32</CodePoint> or, when they surpass the
                 bounds of <CodePoint>Int32</CodePoint>, they are of type <CodePoint>Int64</CodePoint>. 
-                By default, the literals are in base 10, however, <CodePoint>0b</CodePoint> or a <CodePoint>0x</CodePoint> can
-                be appended to the start to make it a base 2 or 16 literal, repectively.
+                By default, the literals are in base 10, however, <CodePoint>0b</CodePoint> or <CodePoint>0x</CodePoint> can
+                be appended to the start to make it a base 2 or 16 literal, respectively.
             </p>
         </>),
         GrammarSection("Float Literals", [defs.floatExponent, defs.floatLiteral], <>

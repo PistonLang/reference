@@ -9,7 +9,7 @@ const expressions = GrammarSection("Expressions", [defs.Expression], [], [
     </>, [
         GrammarSection("Identifier Expression", [defs.IdentifierExpression], <>
             <p>
-                An identifier can be used to reference a local or imported item or package with the corresponding name.
+                An identifier can be used to reference a local or imported item or a package with the corresponding name.
             </p>
         </>),
         GrammarSection("Literal Expression", [defs.LiteralExpression]),
@@ -43,23 +43,23 @@ const expressions = GrammarSection("Expressions", [defs.Expression], [], [
         GrammarSection("Call Expression", [defs.CallExpression], <>
             <p>
                 A function can be called by passing it arguments inside parentheses. It should be noted that
-                this needs to be done on the exact same like, otherwise the parentheses will be treated as the
+                this needs to be done on the exact same line, otherwise the parentheses will be treated as the
                 start of a nested expression.
             </p>
             <p>
-                When used on a value, this calls its <CodePoint>apply</CodePoint> member function and when combined with
-                an assignment this calls its <CodePoint>update</CodePoint> member function.
+                When used on a value, this calls its <CodePoint>apply</CodePoint> method and when combined with
+                an assignment this calls its <CodePoint>update</CodePoint> method.
             </p>
         </>),
         GrammarSection("Unary Expression", [defs.UnaryExpression], <>
             <p>
-                Unary expressions are applications of the unary operators 
-                <CodePoint>+</CodePoint> amd <CodePoint>-</CodePoint> which correspond to calls
+                Unary expressions are applications of the unary 
+                operators <CodePoint>+</CodePoint> amd <CodePoint>-</CodePoint> which correspond to calls
                 to the member functions <CodePoint>unaryPlus</CodePoint> and <CodePoint>unaryMinus</CodePoint>.
             </p>
             <p>
                 It should be noted that the operator needs to be directly next to the term, with no whitespace
-                in between, as that is what distinguishes there operators from their binary variants.
+                in between, as that is what distinguishes these operators from their binary variants.
             </p>
         </>),
     ]),
@@ -103,8 +103,8 @@ const expressions = GrammarSection("Expressions", [defs.Expression], [], [
     GrammarSection("Assignment Expression", [defs.AssignExpression], <>
         <p>
             The <CodePoint>=</CodePoint> operator can be used on an identifier or access expression to call
-            the corresponding setter, assuming it exists. When used on a call expression, it calls the object's
-            <CodePoint>update</CodePoint> function. All other cases are errors.
+            the corresponding setter, assuming it exists. When used on a call expression, it calls the 
+            object's <CodePoint>update</CodePoint> function. All other cases are errors.
         </p>
         <p>
             The type of an Assignment Expression is always <CodePoint>piston.Unit</CodePoint>.

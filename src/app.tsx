@@ -1,7 +1,7 @@
 import expressions from './sections/expressions'
 import functions from './sections/functions'
 import introduction from './sections/introduction'
-import javaInterop from './sections/java_interop'
+import javaInterop from './sections/java-interop'
 import packageAndModules from './sections/packages_and_modules'
 import properties from './sections/properties'
 import scopes from './sections/scopes'
@@ -39,17 +39,20 @@ const NavBar = (props: {navUpdate: () => void}) => <header>
 const SideBar = (props: {sections: Section[]}) => <div className='sidebar'>
     <div className='sidebar-header'>Table of contents</div>
     <div className='sidebar-link-list'>
-        {props.sections.map((sec) => 
-        <BrowserRouter basename='/piston-spec'>
-        <Routes>
-            <Route path={`/${sec.id}`} element={
-                <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></a>
-            }/>
-            <Route path={`/*`} element={
-                <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link'>{sec.name}</div></a>
-            }/>
-        </Routes>
-        </BrowserRouter>
+        {props.sections.map((sec, index) => 
+          <BrowserRouter basename='/piston-spec'>
+            <Routes>
+                <Route path={`/${sec.id}`} element={
+                    <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></a>
+                }/>
+                {index === 0 ? <Route path={`/`} element={
+                    <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></a>
+                }/> : <></>}
+                <Route path={`/*`} element={
+                    <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link'>{sec.name}</div></a>
+                }/>
+            </Routes>
+          </BrowserRouter>
         )}
     </div>
 </div>
@@ -83,7 +86,7 @@ export const App = () => {
                     <BrowserRouter basename='/piston-spec'>
                         <Routes>
                             {sectionsToRoutes(sections)}
-                            <Route path='/*' element={introduction.toComponent(0)}></Route>
+                            <Route path='/' element={introduction.toComponent(0)}></Route>
                         </Routes>
                     </BrowserRouter>
                 </div>
