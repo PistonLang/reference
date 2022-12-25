@@ -360,8 +360,8 @@ const types = GrammarSection(
 					<>
 						<p>
 							Every type parameter has a lower bound of{' '}
-							<CodePoint>palm.Nothing</CodePoint> an upper bound, which is{' '}
-							<CodePoint>palm.Any?</CodePoint> by default. At the end of type,
+							<CodePoint>piston.Nothing</CodePoint> an upper bound, which is{' '}
+							<CodePoint>piston.Any?</CodePoint> by default. At the end of type,
 							function, getter, and setter headers, a{' '}
 							<CodePoint>where</CodePoint> clause can be defined where the type
 							parameters can be given a custom constraint on their upper bound.
