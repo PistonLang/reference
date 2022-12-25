@@ -14,7 +14,7 @@ import { ReactComponent as DiscordLogo } from './svg/discord.svg'
 import { ReactComponent as Dropdown } from './svg/dropdown.svg'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Section } from './sections'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const NavBar = (props: {navUpdate: () => void}) => <header>
   <div className='header-left'>
@@ -36,26 +36,34 @@ const NavBar = (props: {navUpdate: () => void}) => <header>
   </nav>
 </header>
 
-const SideBar = (props: {sections: Section[]}) => <div className='sidebar'>
-    <div className='sidebar-header'>Table of contents</div>
-    <div className='sidebar-link-list'>
-        {props.sections.map((sec, index) => 
-          <BrowserRouter basename='/piston-spec'>
-            <Routes>
-                <Route path={`/${sec.id}`} element={
-                    <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></a>
-                }/>
-                {index === 0 ? <Route path={`/`} element={
-                    <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></a>
-                }/> : <></>}
-                <Route path={`/*`} element={
-                    <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link'>{sec.name}</div></a>
-                }/>
-            </Routes>
-          </BrowserRouter>
-        )}
+const SideBar = (props: {sections: Section[]}) => {
+    const [scrollY, setScrollY] = useState(window.scrollY)
+    useEffect(() => {
+      const callback = () => setScrollY(window.scrollY)
+      document.addEventListener("scroll", callback)
+      return () => document.removeEventListener("scroll", callback)
+    })
+    return <div className={scrollY > 60 ? 'sidebar-sticky' : 'sidebar'}>
+        <div className='sidebar-header'>Table of contents</div>
+        <div className='sidebar-link-list'>
+            {props.sections.map((sec, index) => 
+              <BrowserRouter basename='/piston-spec'>
+                <Routes>
+                    <Route path={`/${sec.id}`} element={
+                        <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></a>
+                    }/>
+                    {index === 0 ? <Route path={`/`} element={
+                        <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link-selected'>{sec.name}</div></a>
+                    }/> : <></>}
+                    <Route path={`/*`} element={
+                        <a href={`/piston-spec/${sec.id}`}><div className='sidebar-link'>{sec.name}</div></a>
+                    }/>
+                </Routes>
+              </BrowserRouter>
+            )}
+        </div>
     </div>
-</div>
+}
 
 const sectionsToRoutes = (sects: Section[]) => sects.map((curr) => 
     <Route path={`/${curr.id}`} element={curr.toComponent(0)}></Route>
@@ -75,8 +83,8 @@ const sections = [
 ]
 
 export const App = () => {
-    const [hideSide, sethideSide] = useState(true)
-    const update = () => sethideSide((val) => !val)
+    const [hideSide, setHideSide] = useState(true)
+    const update = () => setHideSide((val) => !val)
     return <>
         <NavBar navUpdate={update}/>
         <div className={hideSide ? 'noSidebar' : 'withSidebar'}>

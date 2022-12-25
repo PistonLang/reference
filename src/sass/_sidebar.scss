@@ -11,6 +11,12 @@
   transform: 0.5s;
 }
 
+.sidebar-sticky {
+  @extend .sidebar;
+  position: fixed;
+  margin-top: -61px;
+}
+
 .withSidebar .sidebar {
   width: 300px;
 }
