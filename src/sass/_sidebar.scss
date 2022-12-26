@@ -51,6 +51,8 @@
 	background-color: hsl(190, 35%, 15%);
 }
 
-.sidebar-link:hover {
-	background-color: hsl(0, 0%, 15%);
+@media (hover: hover) {
+	.sidebar-link:hover {
+		background-color: hsl(0, 0%, 15%);
+	}
 }

@@ -59,9 +59,25 @@ nav p {
 	transition: fill 1s, color 1s;
 }
 
-.logo-holder:hover .logo {
-	color: var(--text-color);
-	fill: var(--text-color);
+@media (hover: hover) {
+	.logo {
+		color: var(--unselected-color);
+		fill: var(--unselected-color);
+	}
+}
+
+@media (hover: none) {
+	.logo {
+		color: var(--text-color);
+		fill: var(--text-color);
+	}
+}
+
+@media (hover: hover) {
+	.logo-holder:hover .logo {
+		color: var(--text-color);
+		fill: var(--text-color);
+	}
 }
 
 button {
