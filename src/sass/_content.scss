@@ -1,6 +1,7 @@
 .content {
 	font-family: Georgia, 'Times New Roman', Times, serif;
 	padding-top: 32px;
+	transition: all 0.2s ease-in;
 }
 
 .noSidebar .content {
@@ -8,7 +9,7 @@
 }
 
 .withSidebar .content {
-	margin-left: 300px;
+	margin-left: var(--sidebar-width);
 }
 
 .content-body {
