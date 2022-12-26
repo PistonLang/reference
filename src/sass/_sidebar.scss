@@ -26,12 +26,8 @@
 	transition: margin-left 0.2s ease-in;
 }
 
-.noSidebar :is(.sidebar-static, .sidebar-sticky) {
+.no-sidebar :is(.sidebar-static, .sidebar-sticky) {
 	margin-left: calc(0px - var(--sidebar-width));
-}
-
-.withSidebar :is(.sidebar-static, .sidebar-sticky) {
-	margin-left: 0px;
 }
 
 .sidebar-header {

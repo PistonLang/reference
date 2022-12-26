@@ -1,14 +1,13 @@
-import defs from '../grammar/tokens';
-import { CodePoint, GrammarSection } from '../sections';
+import defs from '../grammar/tokens'
+import { CodePoint, GrammarSection } from '../sections'
 
 const tokens = GrammarSection(
 	'Lexical Tokens',
 	[defs.PistonToken],
 	<>
 		<p>
-			Piston code is represented as a sequence of UTF-8 code points. Said code
-			points can then be transformed into a sequence of tokens such that the
-			longest route is always taken.
+			Piston code is represented as a sequence of UTF-8 code points. Said code points can then be transformed into a
+			sequence of tokens such that the longest route is always taken.
 		</p>
 	</>,
 	[
@@ -25,10 +24,9 @@ const tokens = GrammarSection(
 			],
 			<>
 				<p>
-					Identifiers are sequences of characters which are used for binding
-					types, variables, functions and packages. An identifier must start
-					with a letter or underscore and can later also contain digits and
-					apostrophes, as primes.
+					Identifiers are sequences of characters which are used for binding types, variables, functions and packages.
+					An identifier must start with a letter or underscore and can later also contain digits and apostrophes, as
+					primes.
 				</p>
 			</>
 		),
@@ -37,15 +35,12 @@ const tokens = GrammarSection(
 			[],
 			<>
 				<p>
-					In Piston, keywords are identifiers which are specially treated by the
-					language. As such, during parsing, they are not represented as
-					identifier tokens, but as their own special tokens.
+					In Piston, keywords are identifiers which are specially treated by the language. As such, during parsing, they
+					are not represented as identifier tokens, but as their own special tokens.
 				</p>
 				<p>
-					We differentiate between strong keywords, which remain inexchangeable
-					with identifiers throughout the grammar, and weak keywords, which, as
-					we shall see in the grammar, can be used in the same places as
-					identifier tokens.
+					We differentiate between strong keywords, which remain inexchangeable with identifiers throughout the grammar,
+					and weak keywords, which, as we shall see in the grammar, can be used in the same places as identifier tokens.
 				</p>
 			</>,
 			[
@@ -95,26 +90,18 @@ const tokens = GrammarSection(
 			],
 			<>
 				<p>
-					Given above are all the sequences of symbol (non-alphanumeric and
-					non-whitespace) characters which have a lexical meaning in the
-					language.
+					Given above are all the sequences of symbol (non-alphanumeric and non-whitespace) characters which have a
+					lexical meaning in the language.
 				</p>
 			</>
 		),
 		GrammarSection(
 			'Ignorables',
-			[
-				defs.character,
-				defs.whitespaceCharacter,
-				defs.newline,
-				defs.whitespace,
-				defs.comment,
-			],
+			[defs.character, defs.whitespaceCharacter, defs.newline, defs.whitespace, defs.comment],
 			<>
 				<p>
-					When constructing syntax nodes, whitespace and comments are to be
-					ignored. The only form of whitespace that is to be treated diffrently
-					are new lines.
+					When constructing syntax nodes, whitespace and comments are to be ignored. The only form of whitespace that is
+					to be treated diffrently are new lines.
 				</p>
 			</>,
 			[
@@ -123,11 +110,9 @@ const tokens = GrammarSection(
 					[defs.lineComment, defs.multiComment],
 					<>
 						<p>
-							Piston supports single-line comments, which begin with a{' '}
-							<CodePoint>{'//'}</CodePoint> and multi-line comments, which start
-							with a <CodePoint>{'/*'}</CodePoint> and end with a{' '}
-							<CodePoint>{'*/'}</CodePoint>. Multi-line comments support
-							nesting.
+							Piston supports single-line comments, which begin with a <CodePoint>{'//'}</CodePoint> and multi-line
+							comments, which start with a <CodePoint>{'/*'}</CodePoint> and end with a <CodePoint>{'*/'}</CodePoint>.
+							Multi-line comments support nesting.
 						</p>
 					</>
 				),
@@ -136,11 +121,9 @@ const tokens = GrammarSection(
 					[defs.commaOrNL],
 					<>
 						<p>
-							In Piston, lists of items, whether declarations, parameters,
-							arguments or expressions, use commas or new lines for separation.
-							It is only when there is a missing comma that new lines become
-							significant characters. In every other case, new lines, like the
-							other whitespace characters, are ignored.
+							In Piston, lists of items, whether declarations, parameters, arguments or expressions, use commas or new
+							lines for separation. It is only when there is a missing comma that new lines become significant
+							characters. In every other case, new lines, like the other whitespace characters, are ignored.
 						</p>
 					</>
 				),
@@ -151,9 +134,8 @@ const tokens = GrammarSection(
 			[],
 			<>
 				<p>
-					Literals are sequences of characters which represent particular
-					values. Piston has integer, floating-point, boolean, character and
-					string literals
+					Literals are sequences of characters which represent particular values. Piston has integer, floating-point,
+					boolean, character and string literals
 				</p>
 			</>,
 			[
@@ -173,13 +155,10 @@ const tokens = GrammarSection(
 					],
 					<>
 						<p>
-							Integer literals represent values of type{' '}
-							<CodePoint>Int32</CodePoint> or, when they surpass the bounds of{' '}
-							<CodePoint>Int32</CodePoint>, they are of type{' '}
-							<CodePoint>Int64</CodePoint>. By default, the literals are in base
-							10, however, <CodePoint>0b</CodePoint> or{' '}
-							<CodePoint>0x</CodePoint> can be appended to the start to make it
-							a base 2 or 16 literal, respectively.
+							Integer literals represent values of type <CodePoint>Int32</CodePoint> or, when they surpass the bounds of{' '}
+							<CodePoint>Int32</CodePoint>, they are of type <CodePoint>Int64</CodePoint>. By default, the literals are
+							in base 10, however, <CodePoint>0b</CodePoint> or <CodePoint>0x</CodePoint> can be appended to the start
+							to make it a base 2 or 16 literal, respectively.
 						</p>
 					</>
 				),
@@ -188,9 +167,8 @@ const tokens = GrammarSection(
 					[defs.floatExponent, defs.floatLiteral],
 					<>
 						<p>
-							Floating-point literals represent values of type{' '}
-							<CodePoint>Float64</CodePoint>. They are in base 10 and support
-							scientific notation.
+							Floating-point literals represent values of type <CodePoint>Float64</CodePoint>. They are in base 10 and
+							support scientific notation.
 						</p>
 					</>
 				),
@@ -199,8 +177,7 @@ const tokens = GrammarSection(
 					[defs.boolLiteral],
 					<>
 						<p>
-							Boolean literals represent values of type{' '}
-							<CodePoint>Bool</CodePoint>.
+							Boolean literals represent values of type <CodePoint>Bool</CodePoint>.
 						</p>
 					</>
 				),
@@ -209,9 +186,8 @@ const tokens = GrammarSection(
 					[defs.charCharacter, defs.charLiteral],
 					<>
 						<p>
-							Character literals represent values of type{' '}
-							<CodePoint>Char</CodePoint>. Aside for regular characters, they
-							also support certain escape sequences. These include:
+							Character literals represent values of type <CodePoint>Char</CodePoint>. Aside for regular characters,
+							they also support certain escape sequences. These include:
 						</p>
 						<ul>
 							<li>
@@ -246,11 +222,9 @@ const tokens = GrammarSection(
 					[defs.stringCharacter, defs.qoute, defs.stringLiteral],
 					<>
 						<p>
-							String literals represent values of type{' '}
-							<CodePoint>String</CodePoint>. They are able to span multiple
-							lines and support the same escape sequences as character literals.
-							That said, no whitespace elimination is done on the literal itself
-							- that must be done with functions.
+							String literals represent values of type <CodePoint>String</CodePoint>. They are able to span multiple
+							lines and support the same escape sequences as character literals. That said, no whitespace elimination is
+							done on the literal itself - that must be done with functions.
 						</p>
 					</>
 				),
@@ -259,15 +233,14 @@ const tokens = GrammarSection(
 					[],
 					<>
 						<p>
-							The absence of a value can be represented using a{' '}
-							<CodePoint>null</CodePoint> literal. It is a value of type{' '}
-							<CodePoint>Nothing?</CodePoint>.
+							The absence of a value can be represented using a <CodePoint>null</CodePoint> literal. It is a value of
+							type <CodePoint>Nothing?</CodePoint>.
 						</p>
 					</>
 				),
 			]
 		),
 	]
-);
+)
 
-export default tokens;
+export default tokens

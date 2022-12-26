@@ -1,21 +1,13 @@
-import expressions from './sections/expressions';
-import functions from './sections/functions';
-import introduction from './sections/introduction';
-import javaInterop from './sections/java-interop';
-import packageAndModules from './sections/packages_and_modules';
-import properties from './sections/properties';
-import scopes from './sections/scopes';
-import tokens from './sections/tokens';
-import types from './sections/types';
-import typeInference from './sections/type-inference';
-import { ReactComponent as PistonLogo } from './svg/piston.svg';
-import { ReactComponent as GithubLogo } from './svg/github.svg';
-import { ReactComponent as DiscordLogo } from './svg/discord.svg';
-import { ReactComponent as Dropdown } from './svg/dropdown.svg';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Section } from './sections';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { ReactComponent as PistonLogo } from './svg/piston.svg'
+import { ReactComponent as GithubLogo } from './svg/github.svg'
+import { ReactComponent as DiscordLogo } from './svg/discord.svg'
+import { ReactComponent as Dropdown } from './svg/dropdown.svg'
+import { ReactComponent as LeftArrow } from './svg/left-arrow.svg'
+import { ReactComponent as RightArrow } from './svg/right-arrow.svg'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Section } from './sections'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const NavBar = (props: { navUpdate: () => void }) => (
 	<header>
@@ -37,15 +29,15 @@ const NavBar = (props: { navUpdate: () => void }) => (
 			</a>
 		</nav>
 	</header>
-);
+)
 
 const SideBar = (props: { sections: Section[] }) => {
-	const [scrollY, setScrollY] = useState(window.scrollY);
+	const [scrollY, setScrollY] = useState(window.scrollY)
 	useEffect(() => {
-		const callback = () => setScrollY(window.scrollY);
-		document.addEventListener('scroll', callback);
-		return () => document.removeEventListener('scroll', callback);
-	});
+		const callback = () => setScrollY(window.scrollY)
+		document.addEventListener('scroll', callback)
+		return () => document.removeEventListener('scroll', callback)
+	})
 	return (
 		<div className={scrollY > 60 ? 'sidebar-sticky' : 'sidebar-static'}>
 			<div className="sidebar">
@@ -86,44 +78,41 @@ const SideBar = (props: { sections: Section[] }) => {
 				</div>
 			</div>
 		</div>
-	);
-};
+	)
+}
+
+const Content = (props: { index: number, sects: Section[] }) => (
+	<div className="content">
+		<div className="content-body">
+			{props.sects[props.index].toComponent(0)}
+			<div className="content-nav">
+				{props.index > 0 ? <Link to={`/${props.sects[props.index-1].id}`} className="prev-page">
+					<LeftArrow/>
+				</Link> : <></>}
+				{props.index < props.sects.length - 1 ? <Link to={`/${props.sects[props.index+1].id}`} className="next-page">
+					<RightArrow/>
+				</Link> : <></>}
+			</div>
+		</div>
+	</div>
+)
 
 const sectionsToRoutes = (sects: Section[]) =>
-	sects.map((curr) => (
-		<Route path={`/${curr.id}`} element={curr.toComponent(0)}></Route>
-	));
+	sects.map((curr, index) => <Route path={`/${curr.id}`} element={<Content index={index} sects={sects} />}></Route>)
 
-const sections = [
-	introduction,
-	tokens,
-	functions,
-	properties,
-	types,
-	expressions,
-	scopes,
-	typeInference,
-	packageAndModules,
-	javaInterop,
-];
-
-export const App = () => {
-	const [hideSide, setHideSide] = useState(true);
-	const update = () => setHideSide((val) => !val);
+export const App = ({ sects }: { sects: Section[] }) => {
+	const [hideSide, setHideSide] = useState(true)
+	const update = () => setHideSide(val => !val)
 	return (
 		<BrowserRouter basename="reference">
 			<NavBar navUpdate={update} />
-			<div className={hideSide ? 'noSidebar' : 'withSidebar'}>
-				<SideBar sections={sections} />
-				<div className="content">
-					<div className="content-body">
-						<Routes>
-							{sectionsToRoutes(sections)}
-							<Route path="/" element={introduction.toComponent(0)}></Route>
-						</Routes>
-					</div>
-				</div>
+			<div className={hideSide ? 'no-sidebar' : 'with-sidebar'}>
+				<SideBar sections={sects} />
+				<Routes>
+					{sectionsToRoutes(sects)}
+					<Route path="/" element={<Content index={0} sects={sects} />}></Route>
+				</Routes>
 			</div>
 		</BrowserRouter>
-	);
-};
+	)
+}
