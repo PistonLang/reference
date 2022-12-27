@@ -260,7 +260,7 @@ const types = GrammarSection(
 		),
 		GrammarSection(
 			'Intersection Types',
-			[defs.NullableType],
+			[defs.IntersectionType],
 			<>
 				<p>
 					Intersection types are used to represent a type which is a subtype of all intersecting types. Such types are

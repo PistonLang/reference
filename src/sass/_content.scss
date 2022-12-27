@@ -2,12 +2,13 @@
 	font-family: Georgia, 'Times New Roman', Times, serif;
 	padding-top: 32px;
 	transition: margin-left 0.2s ease-in;
+	margin: 0px;
+	overflow-x: hidden;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
 	.content {
 		width: 100%;
-		overflow-x: hidden;
 	}
 }
 
@@ -21,6 +22,7 @@
 
 .content-body {
 	max-width: 60em;
+	margin: 0px;
 	margin-left: auto;
 	margin-right: auto;
 }

@@ -2,7 +2,6 @@
 @import '_sidebar';
 @import '_grammar';
 @import '_content';
-@import '_scrollbar';
 
 :root {
 	background-color: hsl(0, 0%, 12%);
@@ -17,7 +16,21 @@
 	--button-color: hsl(200, 60%, 25%);
 	--button-color-light: hsl(200, 60%, 35%);
 	--sidebar-width: 300px;
+	--block-color: hsl(0, 0%, 15%);
 	line-height: 1.7;
+}
+
+::-webkit-scrollbar-button {
+  height: 0px;
+  width: 0px;
+}
+
+::-webkit-scrollbar {
+  background-color: hsl(0, 0%, 10%)
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
 body {
@@ -26,6 +39,8 @@ body {
 
 html {
 	overflow-x: clip;
+	scroll-padding-top: 1rem;
+	scroll-behavior: smooth;
 }
 
 body {

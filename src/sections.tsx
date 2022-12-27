@@ -44,6 +44,6 @@ export const AlgorithmSection = (
 	algorithm: ReactNode,
 	children: ReactNode = null,
 	subsections: Section[] = []
-): Section => new Section(name, children, subsections, <div className="grammar">{algorithm}</div>)
+): Section => new Section(name, children, subsections, <div className="algorithm">{algorithm}</div>)
 
 export const CodePoint = ({ children }: { children: ReactNode }) => <span className="codepoint">{children}</span>

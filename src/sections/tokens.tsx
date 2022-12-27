@@ -72,6 +72,7 @@ const tokens = GrammarSection(
 				defs.greater,
 				defs.lessEq,
 				defs.greaterEq,
+				defs.and,
 				defs.andAnd,
 				defs.orOr,
 				defs.dot,
