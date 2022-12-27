@@ -2,6 +2,7 @@
 @import '_sidebar';
 @import '_grammar';
 @import '_content';
+@import '_scrollbar';
 
 :root {
 	background-color: hsl(0, 0%, 12%);
@@ -20,7 +21,16 @@
 }
 
 body {
+	overflow-x: clip;
+}
+
+html {
+	overflow-x: clip;
+}
+
+body {
 	margin: 0px;
+	max-width: 100%;
 }
 
 ul {

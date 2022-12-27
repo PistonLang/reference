@@ -4,6 +4,13 @@
 	transition: margin-left 0.2s ease-in;
 }
 
+@media (max-width: 600px) {
+	.content {
+		width: 100%;
+		overflow-x: hidden;
+	}
+}
+
 .no-sidebar .content {
 	margin-left: 0px;
 }
@@ -40,6 +47,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	padding: 40px 20px;
+	-webkit-tap-highlight-color: hsla(0, 0%, 100%, 0.05);
 }
 
 .prev-page,
