@@ -1,23 +1,11 @@
-import {
-	GrammarPoints,
-	many,
-	option,
-	range,
-	special,
-	toDefs,
-	union,
-} from '../grammar';
-import { tokens as tk, tokens } from './refs';
+import { GrammarPoints, many, option, range, special, toDefs, union } from '../grammar'
+import { tokens as tk, tokens } from './refs'
 
 const _defs: Record<keyof typeof tk, GrammarPoints> = {
 	character: special('any unicode character'),
 	commentCharacter: special('any Unicode character except new line (U+000A)'),
-	charCharacter: special(
-		"any Unicode character except \\ (U+005C), new line (U+000A) and ' (U+0027)"
-	),
-	stringCharacter: special(
-		'any Unicode character except \\ (U+005C) and " (U+201D)'
-	),
+	charCharacter: special("any Unicode character except \\ (U+005C), new line (U+000A) and ' (U+0027)"),
+	stringCharacter: special('any Unicode character except \\ (U+005C) and " (U+201D)'),
 	whitespaceCharacter: special(
 		'space (U+0020), tab (U+0009), vertical tab (U+000B), form feed (U+000C) and carriage return (U+000D)'
 	),
@@ -29,45 +17,23 @@ const _defs: Record<keyof typeof tk, GrammarPoints> = {
 	decimalBody: [tk.decimalDigit, many(union(tk.underscore, tk.decimalDigit))],
 	binaryBody: [tk.binaryDigit, many(union(tk.underscore, tk.binaryDigit))],
 	hexBody: [tk.hexDigit, many(union(tk.underscore, tk.hexDigit))],
-	floatExponent: [
-		union('e', 'E'),
-		option(union(tk.plus, tk.minus)),
-		tk.decimalBody,
-	],
+	floatExponent: [union('e', 'E'), option(union(tk.plus, tk.minus)), tk.decimalBody],
 	decimalLiteral: [tk.decimalBody],
 	binaryLiteral: ['0', union('b', 'B'), tk.binaryBody],
 	hexLiteral: ['0', union('x', 'X'), tk.hexBody],
 	intLiteral: union(tk.binaryLiteral, tk.decimalLiteral, tk.hexLiteral),
-	floatLiteral: [
-		tk.decimalBody,
-		tk.dot,
-		tk.decimalBody,
-		option(tk.floatExponent),
-	],
+	floatLiteral: [tk.decimalBody, tk.dot, tk.decimalBody, option(tk.floatExponent)],
 	boolLiteral: union(tk.trueKw, tk.falseKw),
 	escapedChar: ['\\', union('n', 't', 'v', 'f', 'r', "'", '"', '\\')],
-	charLiteral: [
-		tk.apostrophe,
-		union(tk.escapedChar, tokens.charCharacter),
-		tk.apostrophe,
-	],
-	stringLiteral: [
-		tk.qoute,
-		many(union(tk.escapedChar, tokens.stringCharacter)),
-		tk.qoute,
-	],
+	charLiteral: [tk.apostrophe, union(tk.escapedChar, tokens.charCharacter), tk.apostrophe],
+	stringLiteral: [tk.qoute, many(union(tk.escapedChar, tokens.stringCharacter)), tk.qoute],
 	newline: special('the new line character (U+000A)'),
 	commaOrNL: union(tk.comma, tk.newline),
 	lineComment: ['//', many(tokens.commentCharacter)],
-	multiComment: ['/*', many(union(tokens.character, tk.multiComment)), '*/'],
+	multiComment: ['/*', many(union(tk.multiComment, tokens.character)), '*/'],
 	comment: union(tk.lineComment, tk.multiComment),
 	identifierHead: union(tokens.letter, tk.underscore),
-	identifierTail: union(
-		tokens.letter,
-		tk.underscore,
-		tokens.digit,
-		tk.apostrophe
-	),
+	identifierTail: union(tokens.letter, tk.underscore, tokens.digit, tk.apostrophe),
 	identifier: [tk.identifierHead, many(tk.identifierTail)],
 	whitespace: many(tokens.whitespaceCharacter),
 	eof: special('end of the file'),
@@ -166,8 +132,8 @@ const _defs: Record<keyof typeof tk, GrammarPoints> = {
 		tk.subtype,
 		tk.supertype
 	),
-};
+}
 
-const defs = toDefs(tk, _defs);
+const defs = toDefs(tk, _defs)
 
-export default defs;
+export default defs

@@ -1,5 +1,5 @@
-import { GrammarPoints, many, option, toDefs, union } from '../grammar';
-import { exprs, tokens, types } from './refs';
+import { GrammarPoints, many, option, toDefs, union } from '../grammar'
+import { exprs, tokens, types } from './refs'
 
 const _defs: Record<keyof typeof exprs, GrammarPoints> = {
 	NestedExpression: [tokens.lParen, exprs.Expression, tokens.rParen],
@@ -34,40 +34,19 @@ const _defs: Record<keyof typeof exprs, GrammarPoints> = {
 		exprs.IdentifierExpression
 	),
 	Expression: exprs.AssignExpression,
-	TimesExpression: [
-		exprs.Term,
-		many(union(tokens.star, tokens.slash), exprs.Term),
-	],
-	PlusExpression: [
-		exprs.TimesExpression,
-		many(union(tokens.plus, tokens.minus), exprs.TimesExpression),
-	],
+	TimesExpression: [exprs.Term, many(union(tokens.star, tokens.slash), exprs.Term)],
+	PlusExpression: [exprs.TimesExpression, many(union(tokens.plus, tokens.minus), exprs.TimesExpression)],
 	RelationExpression: [
 		exprs.PlusExpression,
-		many(
-			union(tokens.less, tokens.greater, tokens.lessEq, tokens.greaterEq),
-			exprs.PlusExpression
-		),
+		many(union(tokens.less, tokens.greater, tokens.lessEq, tokens.greaterEq), exprs.PlusExpression),
 	],
-	EqualsExpression: [
-		exprs.RelationExpression,
-		many(union(tokens.eqEq, tokens.eMarkEq), exprs.RelationExpression),
-	],
-	AndExpression: [
-		exprs.EqualsExpression,
-		many(tokens.andAnd, exprs.EqualsExpression),
-	],
+	EqualsExpression: [exprs.RelationExpression, many(union(tokens.eqEq, tokens.eMarkEq), exprs.RelationExpression)],
+	AndExpression: [exprs.EqualsExpression, many(tokens.andAnd, exprs.EqualsExpression)],
 	OrExpression: [exprs.AndExpression, many(tokens.orOr, exprs.AndExpression)],
-	TernaryExpression: [
-		exprs.OrExpression,
-		many(tokens.qMark, exprs.Expression, tokens.colon, exprs.Expression),
-	],
-	AssignExpression: [
-		exprs.TernaryExpression,
-		many(tokens.eq, exprs.TernaryExpression),
-	],
-};
+	TernaryExpression: [exprs.OrExpression, many(tokens.qMark, exprs.Expression, tokens.colon, exprs.Expression)],
+	AssignExpression: [exprs.TernaryExpression, many(tokens.eq, exprs.TernaryExpression)],
+}
 
-const defs = toDefs(exprs, _defs);
+const defs = toDefs(exprs, _defs)
 
-export default defs;
+export default defs

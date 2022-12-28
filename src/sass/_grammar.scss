@@ -17,6 +17,11 @@
 .grammar {
 	overflow-x: auto;
 	white-space: nowrap;
+	padding: 8px 0px;
+}
+
+.algorithm {	
+	padding: 8px 28px;
 }
 
 .grammar::-webkit-scrollbar {

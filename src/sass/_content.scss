@@ -6,12 +6,6 @@
 	overflow-x: hidden;
 }
 
-@media (max-width: 800px) {
-	.content {
-		width: 100%;
-	}
-}
-
 .no-sidebar .content {
 	margin-left: 0px;
 }
@@ -21,7 +15,8 @@
 }
 
 .content-body {
-	max-width: 60em;
+	max-width: 60rem;
+	min-width: 22rem;
 	margin: 0px;
 	margin-left: auto;
 	margin-right: auto;
@@ -34,7 +29,7 @@
 @for $i from 0 to 4 {
 	a.section-h#{$i} {
 		padding: 6px 16px;
-		border-bottom: 0.2em solid hsl(190 + 20 * $i, 60%, 40%);
+		border-bottom: 0.2rem solid hsl(190 + 20 * $i, 60%, 40%);
 		font-size: 20pt - $i * 2pt;
 		font-weight: var(--bold-weight);
 		display: block;
@@ -45,7 +40,7 @@
 .content-nav {
 	display: flex;
 	flex-direction: row;
-	max-width: 70em;
+	max-width: 70rem;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 40px 20px;

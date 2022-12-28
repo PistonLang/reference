@@ -1,4 +1,4 @@
-import { toRefs } from '../grammar';
+import { toRefs } from '../grammar'
 
 export const exprs = toRefs('expressions', [
 	'NestedExpression',
@@ -19,7 +19,7 @@ export const exprs = toRefs('expressions', [
 	'OrExpression',
 	'TernaryExpression',
 	'AssignExpression',
-] as const);
+] as const)
 
 export const tokens = toRefs('lexical-tokens', [
 	'character',
@@ -100,13 +100,9 @@ export const tokens = toRefs('lexical-tokens', [
 	'stringLiteral',
 	'underscore',
 	'PistonToken',
-] as const);
+] as const)
 
-export const props = toRefs('properties', [
-	'PropertyDef',
-	'SetterDef',
-	'GetterDef',
-] as const);
+export const props = toRefs('properties', ['PropertyDef', 'SetterDef', 'GetterDef'] as const)
 
 export const funcs = toRefs('functions', [
 	'FunctionParam',
@@ -114,7 +110,7 @@ export const funcs = toRefs('functions', [
 	'FunctionLikeDef',
 	'Identifier',
 	'FunctionDef',
-] as const);
+] as const)
 
 export const packs = toRefs('packages-and-modules', [
 	'Import',
@@ -123,13 +119,9 @@ export const packs = toRefs('packages-and-modules', [
 	'ImportValue',
 	'ImportGroup',
 	'File',
-] as const);
+] as const)
 
-export const scopes = toRefs('scopes', [
-	'Statement',
-	'StatementBody',
-	'StatementBlock',
-] as const);
+export const scopes = toRefs('scopes', ['Statement', 'StatementBody', 'StatementBlock'] as const)
 
 export const types = toRefs('types', [
 	'TypeInstance',
@@ -146,4 +138,4 @@ export const types = toRefs('types', [
 	'SuperTypes',
 	'ClassDef',
 	'TraitDef',
-] as const);
+] as const)

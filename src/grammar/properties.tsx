@@ -1,5 +1,5 @@
-import { GrammarPoints, option, toDefs, union } from '../grammar';
-import { exprs, funcs, props, tokens, types } from './refs';
+import { GrammarPoints, option, toDefs, union } from '../grammar'
+import { exprs, funcs, props, tokens, types } from './refs'
 
 const _defs: Record<keyof typeof props, GrammarPoints> = {
 	PropertyDef: [
@@ -11,8 +11,8 @@ const _defs: Record<keyof typeof props, GrammarPoints> = {
 	],
 	GetterDef: [tokens.getKw, funcs.FunctionLikeDef],
 	SetterDef: [tokens.setKw, funcs.FunctionLikeDef],
-};
+}
 
-const defs = toDefs(props, _defs);
+const defs = toDefs(props, _defs)
 
-export default defs;
+export default defs

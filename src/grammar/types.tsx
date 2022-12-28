@@ -1,12 +1,8 @@
-import { GrammarPoints, many, option, toDefs, union } from '../grammar';
-import { tokens, types, scopes, funcs } from './refs';
+import { GrammarPoints, many, option, toDefs, union } from '../grammar'
+import { tokens, types, scopes, funcs } from './refs'
 
 const _defs: Record<keyof typeof types, GrammarPoints> = {
-	TypePath: union(types.PathSegment, [
-		types.TypePath,
-		tokens.dot,
-		types.PathSegment,
-	]),
+	TypePath: union(types.PathSegment, [types.TypePath, tokens.dot, types.PathSegment]),
 	TypeBound: [funcs.Identifier, tokens.subtype, types.IntersectionType],
 	TypeParams: [
 		tokens.lBracket,
@@ -14,21 +10,9 @@ const _defs: Record<keyof typeof types, GrammarPoints> = {
 		option(funcs.Identifier),
 		tokens.rBracket,
 	],
-	TypeArg: [
-		option(union(tokens.subtype, tokens.supertype)),
-		types.TypeInstance,
-	],
-	TypeArgs: [
-		tokens.lBracket,
-		many(types.TypeArg, option(tokens.commaOrNL)),
-		option(types.TypeArg),
-		tokens.rBracket,
-	],
-	WhereClause: [
-		tokens.whereKw,
-		many(types.TypeBound, tokens.comma),
-		types.TypeBound,
-	],
+	TypeArg: [option(union(tokens.subtype, tokens.supertype)), types.TypeInstance],
+	TypeArgs: [tokens.lBracket, many(types.TypeArg, option(tokens.commaOrNL)), option(types.TypeArg), tokens.rBracket],
+	WhereClause: [tokens.whereKw, many(types.TypeBound, tokens.comma), types.TypeBound],
 	NestedType: [tokens.lParen, types.TypeInstance, tokens.rParen],
 	NullableType: [types.TypeInstance, tokens.qMark],
 	TypeInstance: union(types.TypePath, types.NestedType, types.NullableType),
@@ -52,8 +36,8 @@ const _defs: Record<keyof typeof types, GrammarPoints> = {
 		option(types.WhereClause),
 		option(scopes.StatementBlock),
 	],
-};
+}
 
-const defs = toDefs(types, _defs);
+const defs = toDefs(types, _defs)
 
-export default defs;
+export default defs
