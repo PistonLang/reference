@@ -39,7 +39,7 @@ const tokens = GrammarSection(
 					are not represented as identifier tokens, but as their own special tokens.
 				</p>
 				<p>
-					We differentiate between strong keywords, which remain inexchangeable with identifiers throughout the grammar,
+					We differentiate between strong keywords, which remain unexchangeable with identifiers throughout the grammar,
 					and weak keywords, which, as we shall see in the grammar, can be used in the same places as identifier tokens.
 				</p>
 			</>,
@@ -102,7 +102,7 @@ const tokens = GrammarSection(
 			<>
 				<p>
 					When constructing syntax nodes, whitespace and comments are to be ignored. The only form of whitespace that is
-					to be treated diffrently are new lines.
+					to be treated differently are new lines.
 				</p>
 			</>,
 			[
@@ -184,7 +184,7 @@ const tokens = GrammarSection(
 				),
 				GrammarSection(
 					'Char Literals',
-					[defs.charCharacter, defs.charLiteral],
+					[defs.charCharacter, defs.escapedChar, defs.charLiteral],
 					<>
 						<p>
 							Character literals represent values of type <CodePoint>Char</CodePoint>. Aside for regular characters,
@@ -220,7 +220,7 @@ const tokens = GrammarSection(
 				),
 				GrammarSection(
 					'String Literals',
-					[defs.stringCharacter, defs.qoute, defs.stringLiteral],
+					[defs.stringCharacter, defs.quote, defs.stringLiteral],
 					<>
 						<p>
 							String literals represent values of type <CodePoint>String</CodePoint>. They are able to span multiple

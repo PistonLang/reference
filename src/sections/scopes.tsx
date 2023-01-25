@@ -28,8 +28,8 @@ const scopes = GrammarSection(
 					<li>Parameter lists</li>
 				</ul>
 				<p>
-					As an identifier can be used either by itself or in a call, every identifer can be bound to either up to one
-					type, up to one package or up to one property, and simulatenously it may be bound to zero or more functions
+					As an identifier can be used either by itself or in a call, every identifier can be bound to either up to one
+					type, up to one package or up to one property, and simultaneously it may be bound to zero or more functions
 					and/or setters with differing parameters.
 				</p>
 				<p>
@@ -90,7 +90,7 @@ const scopes = GrammarSection(
 					</>
 				),
 				AlgorithmSection(
-					'Callable Name Resoltion Algorithm',
+					'Callable Name Resolution Algorithm',
 					<>
 						<p>For a given scope context C, identifier I and list of arguments L.</p>
 						<ol>
@@ -113,7 +113,7 @@ const scopes = GrammarSection(
 									<li>If i is greater than #L, put A in front of B and stop the algorithm. Otherwise continue.</li>
 									<li>
 										If the type of the i-th parameter of A is equal to that of the i-th parameter of B, increment i and
-										return to the previos step. Otheriwse continue.
+										return to the previous step. Otherwise continue.
 									</li>
 									<li>
 										If the type of the i-th parameter of A is a supertype of that of B, put B in front of A, otherwise
@@ -123,7 +123,7 @@ const scopes = GrammarSection(
 								It should be noted that generic parameters are treated as their type bounds.
 							</li>
 							<li>
-								If there exists a candidate such that the previous sorting algorithm is undecisive when applied to it
+								If there exists a candidate such that the previous sorting algorithm is indecisive when applied to it
 								and the first element, an error occurs. Otherwise, the first item is returned.
 							</li>
 						</ol>
@@ -140,7 +140,7 @@ const scopes = GrammarSection(
 						</p>
 						<p>
 							This algorithm is applied to the type scope of a value which is the direct child of an Access Expression
-							directly contained within a Call Expression. The same is done to expressoins which get resolved to such
+							directly contained within a Call Expression. The same is done to expressions which get resolved to such
 							expressions, including Binary, Unary, Call and Call + Assignment Expressions.
 						</p>
 					</>
@@ -150,7 +150,7 @@ const scopes = GrammarSection(
 					<>
 						<p>For a given scope context C, identifier I and expression E.</p>
 						<ol>
-							<li>A list of candidates is formed of all the settters in the set that C maps I to.</li>
+							<li>A list of candidates is formed of all the setters in the set that C maps I to.</li>
 							<li>
 								The list is trimmed such that a candidate remains if the type of the parameter of the setter is a
 								supertype of the type of E.
@@ -160,7 +160,7 @@ const scopes = GrammarSection(
 								of A is a subtype of the parameter of B
 							</li>
 							<li>
-								If there exists a candidate such that the previous sorting algorithm is undecisive when applied to it
+								If there exists a candidate such that the previous sorting algorithm is indecisive when applied to it
 								and the first element, an error occurs. Otherwise, the first item is returned.
 							</li>
 						</ol>
@@ -172,7 +172,7 @@ const scopes = GrammarSection(
 						</p>
 						<p>
 							This algorithm is recursively applied from the inner-most scope outwards on Identifier Expressions which
-							are immediately contained within Assignment Espressions, such that if there is no result for the current
+							are immediately contained within Assignment Expressions, such that if there is no result for the current
 							scope, the algorithm is applied on its parent scope.
 						</p>
 						<p>

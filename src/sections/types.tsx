@@ -37,7 +37,7 @@ const types = GrammarSection(
 			[],
 			<>
 				<p>
-					For the most part, Piston can function normally without the standard library. The execption to this are the
+					For the most part, Piston can function normally without the standard library. The exception to this are the
 					so-called built-in types given below.
 				</p>
 			</>,
@@ -58,7 +58,7 @@ const types = GrammarSection(
 								<CodePoint>equals(other: Any?) -&gt; Bool</CodePoint>
 							</li>
 							<li>
-								<CodePoint>hashcode() -&gt; Int32</CodePoint>
+								<CodePoint>hashCode() -&gt; Int32</CodePoint>
 							</li>
 							<li>
 								<CodePoint>toString() -&gt; String</CodePoint>
@@ -71,8 +71,8 @@ const types = GrammarSection(
 					[],
 					<>
 						<p>
-							Conversely, <CodePoint>piston.Nothing</CodePoint> is the subtype of all types. It cannot be instantiated
-							and it is used to signify errors and infinite loops.
+							Conversely, <CodePoint>piston.Nothing</CodePoint> is the subtype of all types. When used as a return value it
+							signifies that the function never returns, be it due to an infinite loop or an error.
 						</p>
 					</>
 				),
@@ -81,7 +81,7 @@ const types = GrammarSection(
 					[],
 					<>
 						<p>
-							<CodePoint>piston.Unit</CodePoint> is a singleton type which signiifies side-effects, akin to{' '}
+							<CodePoint>piston.Unit</CodePoint> is a singleton type which signifies side-effects, akin to{' '}
 							<CodePoint>void</CodePoint> in many programming languages.
 						</p>
 					</>
@@ -157,7 +157,7 @@ const types = GrammarSection(
 							There are also specialized array types for some of the aforementioned built-in types, namely{' '}
 							<CodePoint>piston.BoolArray</CodePoint>, <CodePoint>piston.Int8Array</CodePoint>,{' '}
 							<CodePoint>piston.Int16Array</CodePoint>, <CodePoint>piston.Int32Array</CodePoint>,{' '}
-							<CodePoint>piston.Int64rray</CodePoint>, <CodePoint>piston.Float32Array</CodePoint>,{' '}
+							<CodePoint>piston.Int64Array</CodePoint>, <CodePoint>piston.Float32Array</CodePoint>,{' '}
 							<CodePoint>piston.Float64Array</CodePoint> and <CodePoint>piston.CharArray</CodePoint>.
 						</p>
 					</>
@@ -177,7 +177,7 @@ const types = GrammarSection(
 					defined. Unlike functions and properties defined at the file-level, which may also be referred to as
 					"top-level", all type members implicitly take an extra parameter which is an instance of the enclosing type.
 					This reference can be accessed using the <CodePoint>this</CodePoint> keyword, however this is usually
-					unecessary as all calls to type members use it implicitly.
+					unnecessary as all calls to type members use it implicitly.
 				</p>
 				The declaration blocks of types may also contain nested types, though these types are in no way members of the
 				type, they merely use it as part of their path.
@@ -197,12 +197,12 @@ const types = GrammarSection(
 							data, but they can define functions and properties which need to be implemented by their subtypes.
 						</p>
 						<p>
-							Trait members may or may not have default implementations which can be overriden inside their subtypes.
+							Trait members may or may not have default implementations which can be overridden inside their subtypes.
 							The only exception to this are stored properties as traits are unable to store data.
 						</p>
 						<p>
 							Every member defined in a trait is implicitly contained in the declaration scope of its subtypes. There it
-							may be overriden such that it has a different implementation. Additionally, its parameters may be renamed
+							may be overridden such that it has a different implementation. Additionally, its parameters may be renamed
 							and its return type may be changed to a subtype of the one used in the supertype.
 						</p>
 					</>
@@ -212,7 +212,7 @@ const types = GrammarSection(
 					[defs.ClassDef],
 					<>
 						<p>
-							Classes are types which cannot be subtyped, but can be instatiated and store data. Stored properties can
+							Classes are types which cannot be subtyped, but can be instantiated and store data. Stored properties can
 							be defined within their definition block and are evaluated when the instance is created.
 						</p>
 						<p>
@@ -277,7 +277,7 @@ const types = GrammarSection(
 		),
 		GrammarSection(
 			'Union Types',
-			[defs.NullableType],
+			[],
 			<>
 				<p>
 					A union type is a type such that its set of values is the union of the sets of the types that go into the
@@ -295,7 +295,7 @@ const types = GrammarSection(
 			[defs.TypeParams, defs.TypeArg, defs.TypeArgs],
 			<>
 				<p>
-					All declarations in Piston can take zero or more type parameters which are defined in sqaure brackets after
+					All declarations in Piston can take zero or more type parameters which are defined in square brackets after
 					the defining identifier. Similarly, type arguments can be passed in between square brackets.
 				</p>
 			</>,

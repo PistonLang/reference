@@ -54,7 +54,7 @@ export const tokens = toRefs('lexical-tokens', [
 	'trueKw',
 	'falseKw',
 	'apostrophe',
-	'qoute',
+	'quote',
 	'lParen',
 	'rParen',
 	'lBracket',

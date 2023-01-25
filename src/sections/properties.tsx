@@ -20,7 +20,7 @@ const properties = GrammarSection(
 			[defs.SetterDef],
 			<>
 				<p>
-					Setters are fuctions which are called when a property is being assigned a value. Since setters have a
+					Setters are functions which are called when a property is being assigned a value. Since setters have a
 					parameter, they are able to be overloaded in the same manner as functions.
 				</p>
 			</>
@@ -35,7 +35,7 @@ const properties = GrammarSection(
 					<CodePoint>var</CodePoint> a setter is also created.
 				</p>
 				<p>
-					Stored properties are initalized when the file is being loaded and when a class instance is created. Unlike
+					Stored properties are initialized when the file is being loaded and when a class instance is created. Unlike
 					functions, getters and setters, the order in which they are written matters as that is the order in which they
 					will be evaluated. As such, stored property cannot be used in the expression of another stored property before
 					it is initialized. That said it is not expected that indirect access by calling a function which uses it is

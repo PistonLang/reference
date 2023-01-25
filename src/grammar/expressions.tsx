@@ -3,7 +3,7 @@ import { exprs, tokens, types } from './refs'
 
 const _defs: Record<keyof typeof exprs, GrammarPoints> = {
 	NestedExpression: [tokens.lParen, exprs.Expression, tokens.rParen],
-	AccessExpression: [exprs.Term, tokens.comma, types.PathSegment],
+	AccessExpression: [exprs.Term, tokens.dot, types.PathSegment],
 	CallExpression: [
 		exprs.Term,
 		tokens.lParen,

@@ -5,7 +5,7 @@ const javaInterop = GrammarSection(
 	[],
 	<>
 		<p>
-			Piston is a programming language which compiles to JVM bytecodes, specifically that of Java 17. As a result,
+			Piston is a programming language which compiles to JVM bytecode, specifically that of Java 17. As a result,
 			Piston is able to interoperate with other languages on the JVM.
 		</p>
 	</>,
@@ -18,7 +18,7 @@ const javaInterop = GrammarSection(
 					Given a string of one or more character starting with a capital letter <CodePoint>X</CodePoint>, all methods
 					without parameters named <CodePoint>getX</CodePoint> are treated as getters and all methods with one parameter
 					named <CodePoint>setX</CodePoint> are treated as setters of the property named <CodePoint>X</CodePoint> with
-					the first letter decapitalized.
+					the first letter uncapitalized.
 				</p>
 				<p>
 					In the other direction, all getter become methods which begin with <CodePoint>get</CodePoint> and all setters
@@ -60,7 +60,7 @@ const javaInterop = GrammarSection(
 						<p>
 							All Java classes, aside for the aforementioned <CodePoint>java.lang.Object</CodePoint>, regardless of
 							whether abstract, final or sealed, get treated as Piston classes and thus cannot be subtyped in Piston
-							code. Conversly, all Piston classes get mapped to final Java classes. The exception to this are some of
+							code. Conversely, all Piston classes get mapped to final Java classes. The exception to this are some of
 							the built-in types which have the following mapping:
 						</p>
 						<ul>
@@ -124,7 +124,7 @@ const javaInterop = GrammarSection(
 						</ul>
 						<p>
 							Going from Piston to Java, the second type is used in generics and as a parameter or return type of an
-							overriden Java method which uses it. In all other scenarios, the primitive variant is to be used.
+							overridden Java method which uses it. In all other scenarios, the primitive variant is to be used.
 						</p>
 					</>
 				),

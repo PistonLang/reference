@@ -6,7 +6,7 @@ const functions = GrammarSection(
 	[defs.Identifier, defs.FunctionParam, defs.FunctionParams, defs.FunctionLikeDef, defs.FunctionDef],
 	<>
 		<p>
-			Every function in Piston must have an identifer, a list of parameters and, aside for functions in traits, it must
+			Every function in Piston must have an identifier, a list of parameters and, aside for functions in traits, it must
 			also contain an expression which gets evaluated every time it is called. Functions which return a value must also
 			have a return type, otherwise it defaults to <CodePoint>Unit</CodePoint>.
 		</p>

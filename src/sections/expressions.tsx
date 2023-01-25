@@ -38,8 +38,8 @@ const expressions = GrammarSection(
 					<>
 						<p>
 							<CodePoint>super</CodePoint> can be used to call the supertype's implementation of a member. In the case
-							that there are multiple supertypes with such an implmentation, the exact supertype needs to be passed in
-							as a type argumet.
+							that there are multiple supertypes with such an implementation, the exact supertype needs to be passed in
+							as a type argument.
 						</p>
 						<p>Super Expressions cannot be used by themselves - they must be children of other expressions.</p>
 					</>
@@ -81,7 +81,7 @@ const expressions = GrammarSection(
 					[defs.UnaryExpression],
 					<>
 						<p>
-							Unary expressions are applications of the unary operators <CodePoint>+</CodePoint> amd{' '}
+							Unary expressions are applications of the unary operators <CodePoint>+</CodePoint> and{' '}
 							<CodePoint>-</CodePoint> which correspond to calls to the member functions{' '}
 							<CodePoint>unaryPlus</CodePoint> and <CodePoint>unaryMinus</CodePoint>.
 						</p>
@@ -105,7 +105,7 @@ const expressions = GrammarSection(
 			],
 			<>
 				<p>
-					All binary operators in Piston, aside for <CodePoint>&&</CodePoint> amd <CodePoint>||</CodePoint> correspond
+					All binary operators in Piston, aside for <CodePoint>&&</CodePoint> and <CodePoint>||</CodePoint> correspond
 					to certain member functions on the first operand. Namely
 				</p>
 				<ul>

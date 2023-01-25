@@ -18,10 +18,10 @@ const typeInference = GrammarSection(
 			<>
 				<p>
 					While type arguments can explicitly be passed in, it is also the compiler's job to infer them when they are
-					left out. To accomplish this, at the call site all occurences of a type parameter are replaced with an
+					left out. To accomplish this, at the call site all occurrences of a type parameter are replaced with an
 					inference variable which is given a set of constraints that match those of the parameter, as well ones which
 					are additionally inferred. Namely, for an inference variable α and a type T, there are three types of
-					constaints:
+					constraints:
 				</p>
 				<ul>
 					<li>α &lt;: T (Subtype)</li>
@@ -54,8 +54,8 @@ const typeInference = GrammarSection(
 				<p>
 					At the point that an equality constraint is given, α is to be replaced with T. If that never happens however,
 					all the subtyping constraints are to be combined into one constraint α &lt;: I where I is a reduced
-					intersection of all the subtype contraints. Similarly, all the supertyping constraints are to be reduced to a
-					single constraint α &gt;: U where U is a reduced union of all the supertype contraints. Then, if I = U, it
+					intersection of all the subtype constraints. Similarly, all the supertyping constraints are to be reduced to a
+					single constraint α &gt;: U where U is a reduced union of all the supertype constraints. Then, if I = U, it
 					follows that α = I = U.
 				</p>
 				<p>
