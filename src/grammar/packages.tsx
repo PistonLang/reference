@@ -3,7 +3,7 @@ import { packs, tokens, funcs, scopes } from './refs'
 
 const _defs: Record<keyof typeof packs, GrammarPoints> = {
 	ImportGroup: [tokens.lBrace, many(packs.ImportSegment, tokens.commaOrNL), option(packs.ImportSegment), tokens.rBrace],
-	ImportPath: [option(packs.ImportPath, tokens.dot), funcs.Identifier],
+	ImportPath: [funcs.Identifier, many(tokens.dot, funcs.Identifier)],
 	ImportValue: union(packs.ImportGroup),
 	ImportSegment: [packs.ImportPath, option(tokens.colon, packs.ImportValue)],
 	Import: [tokens.importKw, packs.ImportValue],
