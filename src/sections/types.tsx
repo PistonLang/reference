@@ -301,14 +301,13 @@ const types = GrammarSection(
 			</>,
 			[
 				GrammarSection(
-					'Where Clause',
-					[defs.TypeBound, defs.WhereClause],
+					'Type Guards',
+					[defs.TypeBound, defs.TypeGuard],
 					<>
 						<p>
 							Every type parameter has a lower bound of <CodePoint>piston.Nothing</CodePoint> an upper bound, which is{' '}
-							<CodePoint>piston.Any?</CodePoint> by default. At the end of type, function, getter, and setter headers, a{' '}
-							<CodePoint>where</CodePoint> clause can be defined where the type parameters can be given a custom
-							constraint on their upper bound.
+							<CodePoint>piston.Any?</CodePoint> by default. The upper bound can be further modifier by adding subtyping
+							constraints after pipe (<CodePoint>|</CodePoint>) at the end of the type parameter list.
 						</p>
 					</>
 				),

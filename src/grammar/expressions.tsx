@@ -42,7 +42,7 @@ const _defs: Record<keyof typeof exprs, GrammarPoints> = {
 	],
 	EqualsExpression: [exprs.RelationExpression, many(union(tokens.eqEq, tokens.eMarkEq), exprs.RelationExpression)],
 	AndExpression: [exprs.EqualsExpression, many(tokens.andAnd, exprs.EqualsExpression)],
-	OrExpression: [exprs.AndExpression, many(tokens.orOr, exprs.AndExpression)],
+	OrExpression: [exprs.AndExpression, many(tokens.pipePipe, exprs.AndExpression)],
 	TernaryExpression: [exprs.OrExpression, many(tokens.qMark, exprs.Expression, tokens.colon, exprs.Expression)],
 	AssignExpression: [exprs.TernaryExpression, many(tokens.eq, exprs.TernaryExpression)],
 }
