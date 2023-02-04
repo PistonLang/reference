@@ -54,6 +54,7 @@ const tokens = GrammarSection(
 					defs.falseKw,
 					defs.thisKw,
 					defs.superKw,
+					defs.whereKw,
 				]),
 				GrammarSection('Weak Keywords', [defs.getKw, defs.setKw]),
 			]
@@ -73,7 +74,6 @@ const tokens = GrammarSection(
 				defs.lessEq,
 				defs.greaterEq,
 				defs.and,
-				defs.pipe,
 				defs.andAnd,
 				defs.pipePipe,
 				defs.dot,

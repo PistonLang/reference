@@ -13,7 +13,7 @@ const _defs: Record<keyof typeof types, GrammarPoints> = {
 	],
 	TypeArg: [option(union(tokens.subtype, tokens.supertype)), types.TypeInstance],
 	TypeArgs: [tokens.lBracket, many(types.TypeArg, option(tokens.commaOrNL)), option(types.TypeArg), tokens.rBracket],
-	TypeGuard: [tokens.pipe, many(types.TypeBound, tokens.commaOrNL), option(types.TypeBound)],
+	TypeGuard: [tokens.whereKw, many(types.TypeBound, tokens.commaOrNL), option(types.TypeBound)],
 	NestedType: [tokens.lParen, types.TypeInstance, tokens.rParen],
 	NullableType: [types.TypeInstance, tokens.qMark],
 	TypeInstance: union(types.TypePath, types.NestedType, types.NullableType),
