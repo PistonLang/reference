@@ -66,9 +66,9 @@ const expressions = GrammarSection(
 					[defs.CallExpression],
 					<>
 						<p>
-							A function can be called by passing it arguments inside parentheses. It should be noted that this needs to
-							be done on the exact same line, otherwise the parentheses will be treated as the start of a nested
-							expression.
+							A function or setter can be called by passing it arguments inside parentheses. It should be noted that
+							this needs to be done on the exact same line, otherwise the parentheses will be treated as the start of a
+							nested expression.
 						</p>
 						<p>
 							When used on a value, this calls its <CodePoint>apply</CodePoint> method and when combined with an

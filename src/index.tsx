@@ -4,7 +4,6 @@ import { App } from './app'
 import introduction from './sections/introduction'
 import tokens from './sections/tokens'
 import functions from './sections/functions'
-import properties from './sections/properties'
 import types from './sections/types'
 import expressions from './sections/expressions'
 import scopes from './sections/scopes'
@@ -16,7 +15,6 @@ const sections = [
 	introduction,
 	tokens,
 	functions,
-	properties,
 	types,
 	expressions,
 	scopes,

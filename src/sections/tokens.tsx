@@ -32,32 +32,24 @@ const tokens = GrammarSection(
 		),
 		GrammarSection(
 			'Keywords',
-			[],
+			[
+				defs.classKw,
+				defs.traitKw,
+				defs.valKw,
+				defs.varKw,
+				defs.nullKw,
+				defs.trueKw,
+				defs.falseKw,
+				defs.thisKw,
+				defs.superKw,
+				defs.whereKw,
+			],
 			<>
 				<p>
 					In Piston, keywords are identifiers which are specially treated by the language. As such, during parsing, they
 					are not represented as identifier tokens, but as their own special tokens.
 				</p>
-				<p>
-					We differentiate between strong keywords, which remain unexchangeable with identifiers throughout the grammar,
-					and weak keywords, which, as we shall see in the grammar, can be used in the same places as identifier tokens.
-				</p>
-			</>,
-			[
-				GrammarSection('Strong Keywords', [
-					defs.classKw,
-					defs.traitKw,
-					defs.valKw,
-					defs.varKw,
-					defs.nullKw,
-					defs.trueKw,
-					defs.falseKw,
-					defs.thisKw,
-					defs.superKw,
-					defs.whereKw,
-				]),
-				GrammarSection('Weak Keywords', [defs.getKw, defs.setKw]),
-			]
+			</>
 		),
 		GrammarSection(
 			'Symbols',
