@@ -14,7 +14,7 @@ const _defs: Record<keyof typeof funcs, GrammarPoints> = {
 		tokens.identifier,
 		option(types.TypeParams),
 		option(funcs.FunctionParams),
-		option(tokens.arrow, types.TypeInstance),
+		option(tokens.colon, types.TypeInstance),
 		option(tokens.eq, exprs.Expression),
 	],
 	PropertyDef: [

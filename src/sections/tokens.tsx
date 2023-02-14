@@ -72,7 +72,6 @@ const tokens = GrammarSection(
 				defs.qMark,
 				defs.colon,
 				defs.comma,
-				defs.arrow,
 				defs.lParen,
 				defs.rParen,
 				defs.lBracket,

@@ -77,7 +77,6 @@ export const tokens = toRefs('lexical-tokens', [
 	'colon',
 	'subtype',
 	'supertype',
-	'arrow',
 	'dot',
 	'comma',
 	'binaryDigit',

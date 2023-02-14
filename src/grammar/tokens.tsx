@@ -75,7 +75,6 @@ const _defs: Record<keyof typeof tk, GrammarPoints> = {
 	colon: ':',
 	subtype: '<:',
 	supertype: '>:',
-	arrow: '->',
 	dot: '.',
 	comma: ',',
 	underscore: '_',
@@ -123,7 +122,6 @@ const _defs: Record<keyof typeof tk, GrammarPoints> = {
 		tk.lBrace,
 		tk.rBrace,
 		tk.colon,
-		tk.arrow,
 		tk.and,
 		tk.subtype,
 		tk.supertype
