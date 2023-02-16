@@ -3,11 +3,11 @@ import { tokens, types, scopes, funcs } from './refs'
 
 const _defs: Record<keyof typeof types, GrammarPoints> = {
 	TypePath: [types.PathSegment, many(tokens.dot, types.PathSegment)],
-	TypeBound: [funcs.Identifier, tokens.subtype, types.IntersectionType],
+	TypeBound: [tokens.identifier, tokens.subtype, types.IntersectionType],
 	TypeParams: [
 		tokens.lBracket,
-		many(funcs.Identifier, option(tokens.commaOrNL)),
-		option(funcs.Identifier),
+		many(tokens.identifier, option(tokens.commaOrNL)),
+		option(tokens.identifier),
 		option(types.TypeGuard),
 		tokens.rBracket,
 	],
@@ -18,11 +18,11 @@ const _defs: Record<keyof typeof types, GrammarPoints> = {
 	NullableType: [types.TypeInstance, tokens.qMark],
 	TypeInstance: union(types.TypePath, types.NestedType, types.NullableType),
 	IntersectionType: [types.TypeInstance, many(tokens.and, types.TypeInstance)],
-	PathSegment: [funcs.Identifier, option(types.TypeArgs)],
+	PathSegment: [tokens.identifier, option(types.TypeArgs)],
 	SuperTypes: [tokens.subtype, types.IntersectionType],
 	ClassDef: [
 		tokens.classKw,
-		funcs.Identifier,
+		tokens.identifier,
 		option(types.TypeParams),
 		option(funcs.FunctionParams),
 		option(types.SuperTypes),
@@ -30,7 +30,7 @@ const _defs: Record<keyof typeof types, GrammarPoints> = {
 	],
 	TraitDef: [
 		tokens.traitKw,
-		funcs.Identifier,
+		tokens.identifier,
 		option(types.TypeParams),
 		option(types.SuperTypes),
 		option(scopes.StatementBlock),

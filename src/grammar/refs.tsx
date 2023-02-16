@@ -46,8 +46,6 @@ export const tokens = toRefs('lexical-tokens', [
 	'varKw',
 	'whereKw',
 	'importKw',
-	'getKw',
-	'setKw',
 	'thisKw',
 	'superKw',
 	'nullKw',
@@ -79,7 +77,6 @@ export const tokens = toRefs('lexical-tokens', [
 	'colon',
 	'subtype',
 	'supertype',
-	'arrow',
 	'dot',
 	'comma',
 	'binaryDigit',
@@ -102,14 +99,11 @@ export const tokens = toRefs('lexical-tokens', [
 	'PistonToken',
 ] as const)
 
-export const props = toRefs('properties', ['PropertyDef', 'SetterDef', 'GetterDef'] as const)
-
 export const funcs = toRefs('functions', [
 	'FunctionParam',
 	'FunctionParams',
-	'FunctionLikeDef',
-	'Identifier',
 	'FunctionDef',
+	'PropertyDef'
 ] as const)
 
 export const packs = toRefs('packages-and-modules', [
